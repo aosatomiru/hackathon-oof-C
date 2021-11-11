@@ -8,10 +8,11 @@ function publish() {
     // ユーザ名を取得
     const userName = $('#userName').text();
     // 入力されたメッセージを取得
-    const message = $('#message').val() + nowDate;
-    // 投稿内容を送信
-    if (message !== '' && message.trim()){
-        socket.emit('sendMessageEvent', message);
+    const message = $('#message').val();
+    if (message.trim()){
+        const date = nowDate;
+        // 投稿内容を送信
+        socket.emit('sendMessageEvent', message + date);
     }
     return false;
 }
