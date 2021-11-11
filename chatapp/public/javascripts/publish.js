@@ -7,7 +7,7 @@ function publish() {
     // 入力されたメッセージを取得
     const message = $('#message').val();
     // 投稿内容を送信
-    if (message.trim()){
+    if (message !== '' && message.trim()){
         socket.emit('sendMessageEvent', message);
     }
     return false;
@@ -15,5 +15,5 @@ function publish() {
 
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
-    $('#thread').prepend('<p>' + userName + 'さん：' + data + '</p>');
+    $('#thread').prepend('<p>' + userName + 'さん：' + data.replace(/\r?\n/g, '<br>') + '</p>');
 });
