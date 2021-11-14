@@ -27,21 +27,40 @@ div {
 /*
  * トップ画面（index.hbs）に関する設定
  */
-.index-user_name {
-
-}
-
-.index-user_name_text {
-    width: 200px;
-}
-
-.index-enter {
-
-}
-
-.index-enter_button {
-
-}
+ html,
+ body {
+   height: 100%;
+ }
+ body {
+   display: -ms-flexbox;
+   display: flex;
+   -ms-flex-align: center;
+   padding-top: 30px;
+   padding-bottom: 30px;
+   background:  linear-gradient(#fff67f, #fc6907);
+ }
+ .form-signin{
+   width: 100%;
+   max-width: 330px;
+   padding: 15px;
+   margin: auto;
+   font-weight: 400;
+ }
+ .form-signin .form-control {
+   position: relative;
+   box-sizing: border-box;
+   height: 80%;
+   padding: 10px;
+   font-size: 16px;
+ }
+ .form-signin .form-control:focus {
+   z-index: 2;
+ }
+ .form-signin input[type="userName"] {
+   margin-bottom: -1px;
+   border-bottom-right-radius: 0;
+   border-bottom-left-radius: 0;
+ }
 
 /*
  * チャットルーム画面（room.hbs）に関する設定
