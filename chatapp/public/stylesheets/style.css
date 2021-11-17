@@ -1,9 +1,10 @@
 html,
 /* 全画面共通*/
 body {
-  margin: 0;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  -ms-flex-align: center;
+  height: 100%; 
+  padding-top: 30px;
+  padding-bottom: 30px;
   background:  linear-gradient(#fff67f, #fc6907);
 }
 /* index画面 */
