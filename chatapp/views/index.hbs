@@ -1,32 +1,15 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <title>OOGIRI</title>
-  <!-- 必要なメタタグ -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="index_style.css">
-  <!-- jQuery, Popperjs -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="/javascripts/index.js"></script>
-  </head>
-  <body class="text-center">
-    <!-- ナビゲーションバー -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <span class="navbar-brand mb-0 h1">OGIRI</span>
-    </nav>
-    <!-- コンテンツ -->
-    <form class="form-signin" method="post" action="./room">
-      <img class="mb-4" src="./logo.png" alt="" width="120" height="75">
-      <h4 h3 mb-3 font-weight-normal>ニックネームの選択</h4>
-      <div class="form-group">
-        <label for="inputUserName" class="sr-only">ユーザー名を入力してください</label>
-        <input type="userName" class="form-control" id="userName" placeholder="username" required autofocus>
-      </div>
-    <div class="btn btn-dark btn-block btn-lg" id="enterRoom" onclick="enter();">はじめる</div>
-  </form>
-  </body>
-</html>
+
+<!-- ナビゲーションバー -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<span class="navbar-brand mb-0 h1">OGIRI</span>
+</nav>
+<!-- コンテンツ -->
+<form class="form-signin" method="post" action="./room">
+  <img class="mb-4" src="./logo.png" alt="" width="120" height="75">
+  <h4 h3 mb-3 font-weight-normal>ニックネームの選択</h4>
+  <div class="form-group">
+    <label for="inputUserName" class="sr-only">ユーザー名を入力してください</label>
+    <input type="userName" class="form-control" id="userName" placeholder="username" required autofocus>
+  </div>
+  <div class="btn btn-dark btn-block btn-lg" id="enterRoom" onclick="enter();">はじめる</div>
+</form>

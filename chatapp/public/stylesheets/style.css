@@ -1,11 +1,36 @@
 html,
+/* 全画面共通*/
 body {
-    margin: 0;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background:  linear-gradient(#fff67f, #fc6907);
-  }
+  margin: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background:  linear-gradient(#fff67f, #fc6907);
+}
+/* index画面 */
+.form-signin{
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: 80%;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="userName"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
 
+/* room画面 */
   .room-login_user {
     margin-left: auto;
     color: #ffffff;
