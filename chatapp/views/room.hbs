@@ -1,32 +1,165 @@
-<div class="container">
+<!doctype html>
+<html lang="ja">
+  <head>
+    <title>room</title>
+  <!-- 必要なメタタグ -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <!-- jQuery, Popperjs -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>4
+  </head>
+  <body class="text-center">
+    <!-- ナビゲーションバー -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <span class="navbar-brand mb-0 h1">OGIRI</span>
+        <div class="room-login_user">
+            ログインユーザ：{{userName}}さん 
+            <input id="userName" type="hidden" value={{userName}}>
+        </div>
+        <div class="room-exit">
+            <input type="button" value="退室する" class="common-button room-exit_button" onclick="exit();">
+        </div>
+        </nav>
+    <!-- コンテンツ -->
     <div class="row">
-        <h1>Node Chat チャットルーム</h1>
+        <!-- お題箱　-->
+        <div class="col-md-4">
+            <form method="post" action="/">
+                <!-- section -->
+                <section>
+                
+                  <!-- 投稿一覧 -->
+                  <div class="line-bc">
+                    <div>
+                      <!--sample文章（完成時には削除）-->
+                      <div class="clearfix">
+                        <br/>
+                        <div class="balloon1 float-left">
+                        　完飲したラーメン丼。書かれてて嫌なことは？
+                        <br/>
+                        <input type="button" value="回答を見る" class="btn btn-secondary" onclick="">
+                        </div>
+                        <div style="margin-left: auto;">{{userName}}さんより</div>
+                      </div>
+                      <div class="clearfix">
+                        <br/>
+                        <div class="balloon1 float-left">
+                        　完飲したラーメン丼。書かれてて嫌なことは？
+                        <br/>
+                        <input type="button" value="回答を見る" class="btn btn-secondary" onclick="">
+                        </div>
+                        <div style="margin-left: auto;">{{userName}}さんより</div>
+                      </div>
+                      <div class="clearfix">
+                        <br/>
+                        <div class="balloon1 float-left">
+                        　完飲したラーメン丼。書かれてて嫌なことは？
+                        <br/>
+                        <input type="button" value="回答を見る" class="btn btn-secondary" onclick="">
+                        </div>
+                        <div style="margin-left: auto;">{{userName}}さんより</div>
+                      </div>
+                      <div class="clearfix">
+                        <br/>
+                        <div class="balloon1 float-left">
+                        　完飲したラーメン丼。書かれてて嫌なことは？
+                        <br/>
+                        <input type="button" value="回答を見る" class="btn btn-secondary" onclick="">
+                        </div>
+                        <div style="margin-left: auto;">{{userName}}さんより</div>
+                      </div>
+                      <!--ココに投稿したお題が収納-->
+                      <div class="room-thread">
+                        <br/>
+                        <div id="thread"></div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- section -->
+                <!-- 入力エリア -->
+                <div class="form-row answer-column">
+                    <div class="room-message col-10">
+                        <input id="message"  class="form-control input-sm" placeholder="お題を投稿する">
+                    </div>
+                    <div class="room-submit col-2">
+                        <input type="button" value="投稿" class="btn btn-dark room-publish_button" onclick="publish();">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- 回答　-->
+        <div class="col-md-4">
+                <form method="post" action="/">
+                    <!-- section -->
+                <section>
+                
+                    <!-- 投稿一覧 -->
+                    <div class="line-cd">
+                      <div>
+                        <!--sample文章（完成時には削除）-->
+                        <div class="clearfix">
+                          <br/>
+                          <div class="balloon2 float-left">
+                          　完飲したラーメン丼。書かれてて嫌なことは？
+                          <br/>
+                          </div>
+                          <div style="margin-left: auto;">{{userName}}さんより</div>
+                        </div>
+                        <div class="clearfix">
+                            <br/>
+                            <div class="balloon3 float-right">
+                            　替え玉一杯無料
+                            <br/>
+                            </div>
+                            <div style="margin-left: auto;">{{userName}}さんより</div>
+                        </div>
+                        <!--ココに投稿したお題が収納-->
+                        <div class="room-thread">
+                          <br/>
+                          <div id="thread"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <!-- section -->
+                  <!-- 入力エリア -->
+                  <div class="form-row answer-column">
+                      <div class="room-message col-10">
+                          <input id="message"  class="form-control input-sm" placeholder="回答を投稿する">
+                      </div>
+                      <div class="room-submit col-2">
+                          <input type="button" value="投稿" class="btn btn-dark room-publish_button" onclick="publish();">
+                      </div>
+                  </div>
+                </form>
+        </div>
+        <!-- チャットルーム　-->
+        <div class="col-md-4">
+                <form method="post" action="/">
+                    <div class="room-login_user">
+                        ログインユーザ：{{userName}}さん
+                        <input id="userName" type="hidden" value={{userName}}>
+                    </div>
+                    <div class="room-message">
+                        <textarea id="message" rows="4" class="room-message_textarea" placeholder="投稿文を入力してください"></textarea>
+                    </div>
+                    <div class="room-submit">
+                        <input type="button" value="投稿" class="common-button room-publish_button" onclick="publish();">
+                        <input type="button" value="メモ" class="common-button room-memo_button" onclick="memo();">
+                    </div>
+                    <div class="room-thread">
+                        <div id="thread"></div>
+                    </div>
+                    <div class="room-exit">
+                        <input type="button" value="退室する" class="common-button room-exit_button" onclick="exit();">
+                    </div>
+                </form>
+        </div>
     </div>
-    <div class="row">
-        <form method="post" action="/">
-            <div class="room-login_user">
-                ログインユーザ：{{userName}}さん
-                <input id="userName" type="hidden" value={{userName}}>
-            </div>
-            <div class="room-message">
-                <textarea id="message" rows="4" class="room-message_textarea" placeholder="投稿文を入力してください"></textarea>
-            </div>
-            <div class="room-submit">
-                <input type="button" value="投稿" class="common-button room-publish_button" onclick="publish();">
-                <input type="button" value="メモ" class="common-button room-memo_button" onclick="memo();">
-            </div>
-            <div class="room-thread">
-                <div id="thread"></div>
-            </div>
-            <div class="room-exit">
-                <input type="button" value="退室する" class="common-button room-exit_button" onclick="exit();">
-            </div>
-        </form>
-    </div>
-</div>
-
-<script src="/javascripts/socket.js"></script>
-<script src="/javascripts/enter.js"></script>
-<script src="/javascripts/publish.js"></script>
-<script src="/javascripts/memo.js"></script>
-<script src="/javascripts/exit.js"></script>
+  </body>
+</html>

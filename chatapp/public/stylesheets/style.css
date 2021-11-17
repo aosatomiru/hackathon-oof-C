@@ -1,102 +1,139 @@
-/*
- * 画面全体に関する設定
- */
+html,
 body {
-    font: 14px "Lucida Grande", Meiryo, Helvetica, Arial, sans-serif;
-}
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background:  linear-gradient(#fff67f, #fc6907);
+  }
 
-a {
-    color: #00B7FF;
-}
+  .room-login_user {
+    margin-left: auto;
+    color: #ffffff;
+  }
 
-div {
-    margin: 20px 0px;
-}
+  /* bootstrapの謎の右の余白を消す */
+  #_wrap {
+    overflow: hidden;
+    background: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
-.row {
-    margin: 20px;
-}
+  main {
+    flex: 1;
+  }
 
-/*
- * ボタンの共通設定
- */
-.common-button {
+  section {
+    width: 80%;
+    margin: 0 auto;
+  }
 
-}
+  aside {
+    width: 60%;
+  }
 
-/*
- * トップ画面（index.hbs）に関する設定
- */
- html,
- body {
-   height: 100%;
- }
- body {
-   display: -ms-flexbox;
-   display: flex;
-   -ms-flex-align: center;
-   padding-top: 30px;
-   padding-bottom: 30px;
-   background:  linear-gradient(#fff67f, #fc6907);
- }
- .form-signin{
-   width: 100%;
-   max-width: 330px;
-   padding: 15px;
-   margin: auto;
-   font-weight: 400;
- }
- .form-signin .form-control {
-   position: relative;
-   box-sizing: border-box;
-   height: 80%;
-   padding: 10px;
-   font-size: 16px;
- }
- .form-signin .form-control:focus {
-   z-index: 2;
- }
- .form-signin input[type="userName"] {
-   margin-bottom: -1px;
-   border-bottom-right-radius: 0;
-   border-bottom-left-radius: 0;
- }
+  /* スマホ用 */
+  @media screen and (max-width: 768px) {
+    section {
+      width: 95%;
+    }
 
-/*
- * チャットルーム画面（room.hbs）に関する設定
- */
-.room-login_user {
+    aside {
+      display: none;
+    }
+  }
 
- }
+  @media screen and (max-width: 992px) {
+    aside {
+      display: none;
+    }
+  }
 
-.room-message {
+  .line-bc {
+    padding: 20px 10px;
+    max-width: 868px;
+    margin: 10px auto;
+    font-size: 14px;
+    background: #5e5e5e80;
+    overflow:auto;
+  }
 
-}
+  .line-cd {
+    padding: 20px 10px;
+    max-width: 868px;
+    margin: 10px auto;
+    font-size: 14px;
+    background: #fffab1;
+    opacity:1;
+  }
 
-.room-message_textarea {
-    width: 500px;
-}
+  /* 吹き出し左 */
+  .balloon1 {
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(230, 201, 36);
+    color: rgb(51, 51, 51);
+    max-width: 250px;
+    font-size: 15px;
+    font-weight: bolder;
+    word-wrap: break-word;
+    margin-left: 10px;
+  }
 
-.room-submit {
+  .balloon2 {
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(230, 201, 36);
+    color: rgb(51, 51, 51);
+    max-width: 250px;
+    font-size: 15px;
+    font-weight: bolder;
+    word-wrap: break-word;
+    margin-left: 10px;
+  }
 
-}
+  /* 三角アイコン左 */
+  .balloon2::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 3px;
+    left: -19px;
+    border: 8px solid transparent;
+    border-right: 18px solid rgb(230, 201, 36);
+    -webkit-transform: rotate(35deg);
+    transform: rotate(35deg);
+  }
+  /* 吹き出し右 */
+  .balloon3 {
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(75, 75, 75);
+    color: #f7f7f7;
+    max-width: 250px;
+    font-size: 15px;
+    word-wrap: break-word;
+    margin-right: 20px;
+  }
 
-.room-publish_button {
-
-}
-
-.room-memo_button {
-
-}
-
-.room-thread {
-
-}
-
-.room-exit {
-
-}
-
-.room-exit_button {
-
-}
+  /* 三角アイコン右 */
+  .balloon3::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: -19px;
+    border: 8px solid transparent;
+    border-left: 18px solid rgb(75, 75, 75);
+    -webkit-transform: rotate(-35deg);
+    transform: rotate(-35deg);
+  }
+  /* 回答欄*/
+  .answer-column{
+    position: fixed;
+    bottom: 0;
+    width: 33%;
+  }
