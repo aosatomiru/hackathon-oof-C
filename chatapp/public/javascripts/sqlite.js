@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3");
-const db = new sqlite3.Database("./test.db");
+const db = new sqlite3.Database("./ogiri.db");
 
 db.serialize(() => {
 	//お題テーブルの作成
