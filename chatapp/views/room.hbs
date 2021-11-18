@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 <span class="navbar-brand mb-0 h1">OGIRI</span>
 <div class="room-login_user">
-    ログインユーザ：{{userName}}さん 
+    ログインユーザ：{{userName}}さん
     <input id="userName" type="hidden" value={{userName}}>
 </div>
 <div class="room-exit">
@@ -17,7 +17,7 @@
         <form method="post" action="/">
             <!-- section -->
             <section>
-            
+
               <!-- 投稿一覧 -->
               <div class="line-bc">
                 <div>
@@ -83,7 +83,7 @@
             <form method="post" action="/">
                 <!-- section -->
             <section>
-            
+
                 <!-- 投稿一覧 -->
                 <div class="line-cd">
                   <div>
@@ -146,8 +146,24 @@
               </div>
               {{!-- <div class="date">10分前</div> --}}
               <div class="chat-thread">
+                {{!-- データベースから過去のコメントを表示 --}}
+                <div id="old-thread">
+                  {{#each comments}}
+                  <div>
+                    <div>{{this.name}}さん：{{this.content}}{{this.created_at}}</div>
+                    {{#if this.answer_content}}
+                    <div>{{this.answer_theme}}</div>
+                    <div>{{this.answer_content}}</div>
+                    <div>{{this.answer_name}}さんより</div>
+                    {{/if}}
+                  {{/each}}
+                  </div>
+                </div>
+                <!-- /#old-thread -->
                 <br/>
-                <div id="thread"></div>
+                <div id="thread">
+
+                </div>
               </div>
             </div>
           </div>
