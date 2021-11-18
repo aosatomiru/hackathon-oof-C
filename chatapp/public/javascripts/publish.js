@@ -1,4 +1,5 @@
 'use strict';
+const socket = io.connect();
 
 // 投稿メッセージをサーバに送信する
 function publish() {
@@ -8,7 +9,7 @@ function publish() {
     // ユーザ名を取得
     const userName = $('#userName').text();
     // 入力されたメッセージを取得
-    const message = $('#message').val();
+    const message = $('.chat-message #message').val();
     if (message.trim()){
         const date = nowDate;
         // 投稿内容を送信
@@ -19,7 +20,7 @@ function publish() {
 
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
-    $('#thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
+    $('.chat-thread #thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
 });
 
 function getNow(){
