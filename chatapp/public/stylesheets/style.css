@@ -76,7 +76,7 @@ body {
   .line-cd {
     padding: 20px 10px;
     max-width: 868px;
-    margin: 10px auto;
+    margin: 0px auto;
     font-size: 14px;
     height: 480px;
     background: #fffab1;
@@ -148,7 +148,7 @@ body {
   }
   /* 回答欄*/
   .answer-column{
-    position: fixed;
+    position: relative;
     bottom: 0;
   }
 
@@ -196,9 +196,13 @@ body {
   }
   
   .twitter__container .twitter__contents.scroll {
+    padding: 20px 10px;
+    max-width: 868px;
+    margin: 0px 0px;
     height: 420px;
     overflow-y: scroll;
   }
+  
   
   .twitter__container .twitter__block {
     width: 100%;
