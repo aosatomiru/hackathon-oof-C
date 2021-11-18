@@ -59,7 +59,7 @@
                     <div style="margin-left: auto;">{{userName}}さんより</div>
                   </div>
                   <!--ココに投稿したお題が収納-->
-                  <div class="theme-thread">
+                  <div class="room-thread">
                     <br/>
                     <div id="thread"></div>
                   </div>
@@ -69,7 +69,7 @@
             <!-- section -->
             <!-- 入力エリア -->
             <div class="form-row answer-column">
-                <div class="theme-message col-10">
+                <div class="room-message col-10">
                     <input id="message"  class="form-control input-sm" placeholder="お題を投稿する">
                 </div>
                 <div class="room-submit col-2">
@@ -105,7 +105,7 @@
                         <div style="margin-left: auto;">{{userName}}さんより</div>
                     </div>
                     <!--ココに投稿したお題が収納-->
-                    <div class="answer-thread">
+                    <div class="room-thread">
                       <br/>
                       <div id="thread"></div>
                     </div>
@@ -115,7 +115,7 @@
               <!-- section -->
               <!-- 入力エリア -->
               <div class="form-row answer-column">
-                  <div class="answer-message col-10">
+                  <div class="room-message col-10">
                       <input id="message"  class="form-control input-sm" placeholder="回答を投稿する">
                   </div>
                   <div class="room-submit col-2">
@@ -144,17 +144,16 @@
                     ログインユーザ：{{userName}}さん
                     <input id="userName" type="hidden" value={{userName}}>
               </div>
-              {{!-- <div class="date">10分前</div> --}}
-              <div class="chat-thread">
-                <br/>
-                <div id="thread"></div>
+              <div class="date">10分前</div>
+              <div class="text">
+                サンプルテキスト<br>
               </div>
             </div>
           </div>
           <!-- 入力フォーム -->
           <form method="post" action="/">
           <div class="form-row answer-column">
-              <div class="chat-message col-8">
+              <div class="room-message col-8">
                   <input id="message"  class="form-control input-sm" placeholder="回答を投稿する">
               </div>
               <div class="room-submit col-2">
@@ -167,8 +166,3 @@
           </form>
     </div>
 </div>
-
-<script src="/javascripts/publish.js"></script>
-<script src="/javascripts/memo.js"></script>
-<script src="/javascripts/socket.js"></script>
-<script src="/socket.io/socket.io.js"></script>

@@ -3,8 +3,8 @@ html,
 body {
   -ms-flex-align: center;
   height: 100%; 
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   background:  linear-gradient(#fff67f, #fc6907);
 }
 /* index画面 */
@@ -37,26 +37,12 @@ body {
     color: #ffffff;
   }
 
-  /* bootstrapの謎の右の余白を消す */
-  #_wrap {
-    overflow: hidden;
-    background: #f7f7f7;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-
-  main {
-    flex: 1;
-  }
+  /* bootstrapの余白を消す */
 
   section {
     width: 80%;
+    height: 80%;
     margin: 0 auto;
-  }
-
-  aside {
-    width: 60%;
   }
 
   /* スマホ用 */
@@ -77,12 +63,14 @@ body {
   }
 
   .line-bc {
+
     padding: 20px 10px;
     max-width: 868px;
-    margin: 10px auto;
+    margin: 0px 0px;
     font-size: 14px;
+    height: 480px;
     background: #5e5e5e80;
-    overflow:auto;
+    overflow-y: scroll;
   }
 
   .line-cd {
@@ -90,8 +78,9 @@ body {
     max-width: 868px;
     margin: 10px auto;
     font-size: 14px;
+    height: 480px;
     background: #fffab1;
-    opacity:1;
+    overflow-y: scroll;
   }
 
   /* 吹き出し左 */
@@ -161,7 +150,6 @@ body {
   .answer-column{
     position: fixed;
     bottom: 0;
-    width: 33%;
   }
 
   /* twitter風チャット欄 */
@@ -202,13 +190,13 @@ body {
   
   /* タイムライン部分 */
   .twitter__container .twitter__contents {
-    overflow: hidden;
+    overflow-y: scroll;
     position: relative;
     line-height: 135%;
   }
   
   .twitter__container .twitter__contents.scroll {
-    height: 500px;
+    height: 420px;
     overflow-y: scroll;
   }
   
