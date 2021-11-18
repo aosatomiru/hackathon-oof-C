@@ -13,7 +13,7 @@
 <!-- コンテンツ -->
 <div class="row">
     <!-- お題箱　-->
-    <div class="col-md-5">
+    <div class="col-md-4">
         <form method="post" action="/">
             <!-- section -->
             <section>
@@ -79,7 +79,7 @@
         </form>
     </div>
     <!-- 回答　-->
-    <div class="col-md-5">
+    <div class="col-md-4">
             <form method="post" action="/">
                 <!-- section -->
             <section>
@@ -125,25 +125,44 @@
             </form>
     </div>
     <!-- チャットルーム　-->
-    <div class="col-md-2">
-            <form method="post" action="/">
-                <div class="room-login_user">
+    <div class="col-md-4">
+      <!-- twitter風 -->
+      <!-- ▼twitter風ここから -->
+      <div class="twitter__container">
+        <!-- タイトル -->
+        <div class="twitter__title">
+          <span class="twitter-logo"></span>
+        </div>
+
+        <!-- ▼タイムラインエリア scrollを外すと高さ固定解除 -->
+        <div class="twitter__contents scroll">
+
+          <!-- 記事エリア -->
+          <div class="twitter__block">
+            <div class="twitter__block-text">
+              <div class="room-login_user">
                     ログインユーザ：{{userName}}さん
                     <input id="userName" type="hidden" value={{userName}}>
-                </div>
-                <div class="room-message">
-                    <textarea id="message" rows="4" class="room-message_textarea" placeholder="投稿文を入力してください"></textarea>
-                </div>
-                <div class="room-submit">
-                    <input type="button" value="投稿" class="common-button room-publish_button" onclick="publish();">
-                    <input type="button" value="メモ" class="common-button room-memo_button" onclick="memo();">
-                </div>
-                <div class="room-thread">
-                    <div id="thread"></div>
-                </div>
-                <div class="room-exit">
-                    <input type="button" value="退室する" class="common-button room-exit_button" onclick="exit();">
-                </div>
-            </form>
+              </div>
+              <div class="date">10分前</div>
+              <div class="text">
+                サンプルテキスト<br>
+              </div>
+            </div>
+          </div>
+          <!-- 入力フォーム -->
+          <form method="post" action="/">
+          <div class="form-row answer-column">
+              <div class="room-message col-8">
+                  <input id="message"  class="form-control input-sm" placeholder="回答を投稿する">
+              </div>
+              <div class="room-submit col-2">
+                  <input type="button" value="投稿" class="btn btn-dark room-publish_button" onclick="publish();">
+              </div>
+              <div class="room-submit col-2">
+                  <input type="button" value="メモ" class="btn btn-dark room-memo_button" onclick="memo();">
+              </div>
+          </div>
+          </form>
     </div>
 </div>
