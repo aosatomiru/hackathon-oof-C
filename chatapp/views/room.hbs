@@ -119,7 +119,6 @@
                 </div>
                 <!-- /#old-thread -->
                 <div id="thread">
-
                 </div>
                 <br />
                 {{!-- コメントボタン --}}
@@ -211,24 +210,23 @@
               <!-- /#old-thread -->
               <br />
               <div id="thread">
-
               </div>
             </div>
           </div>
         </div>
       </div>
       <!-- 入力フォーム -->
-      <form method="post" action="/">
+      <form method="post" action="/room">
         <div class="form-row answer-column">
           <div class="chat-message col-8">
-            <input id="message" class="form-control input-sm" placeholder="回答を投稿する">
+            <input type="hidden" name="userName" value={{userName}}>
+            <input id="message" name="commentText" class="form-control input-sm" placeholder="コメントを投稿する">
           </div>
           <div class="room-submit col-2">
-            <input type="button" value="投稿" id="chat" class="btn btn-dark room-publish_button"
-              onclick="publish(this.id);">
+            <input type="submit" name="commentPublish"  value="投稿" id="chat" class="btn btn-dark room-publish_button" onclick="publish(this.id);">
           </div>
           <div class="room-submit col-2">
-            <input type="button" value="メモ" id="chat" class="btn btn-dark room-memo_button" onclick="memo(this.id);">
+            <input type="button" name="commentMemo" value="メモ" id="chat" class="btn btn-dark room-memo_button" onclick="memo(this.id);">
           </div>
         </div>
       </form>

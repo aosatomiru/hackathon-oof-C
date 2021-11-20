@@ -5,7 +5,7 @@ function memo(field) {
     // 投稿日時を取得する
     let nowDate = getNow();
     // ユーザ名を取得
-    const userName = $('#userName').text();
+    const userName = $('#userName').val();
     // 入力されたメッセージを取得
     console.log(field);
     let message = $('.' + field + '-message #message').val();

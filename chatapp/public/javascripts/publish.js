@@ -1,7 +1,5 @@
 'use strict';
-
 const socket = io.connect();
-
 // 投稿メッセージをサーバに送信する
 function publish(field) {
 
@@ -9,19 +7,20 @@ function publish(field) {
     let nowDate = getNow();
     // 入力されたメッセージを取得
     let message = $('.' + field + '-message #message').val();
-    
+
     if (message.trim()){
         const date = nowDate;
         if (field === "comment2chat"){
             let answer = document.getElementById("answer");
             let answer_name = document.getElementById("answer_name");
             let theme = document.getElementById("re-theme");
-        
+
             message += date + '<br>' + theme.innerHTML + '<br>' + answer.innerHTML + '<br>' + answer_name.innerHTML;
             // 投稿内容を送信
             socket.emit('sendMessageEvent', message, field);
         }else{
             socket.emit('sendMessageEvent', message + date, field);
+            saveData();
         }
     }
     return false;
@@ -47,7 +46,7 @@ function getNow(){
     let Hour = now.getHours();
     let Min = now.getMinutes();
     let Sec = now.getSeconds();
-    return "　(" + Year + "/" + Month + "/" + Day + "/" + Hour + ":" + Min + ":" + Sec + ")";
+    return  Year + "-" + Month + "-" + Day + " " + Hour + ":" + Min + ":" + Sec;
 }
 
 function comment(){
