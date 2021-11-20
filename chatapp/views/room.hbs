@@ -144,8 +144,20 @@
                     ログインユーザ：{{userName}}さん
                     <input id="userName" type="hidden" value={{userName}}>
               </div>
-              {{!-- <div class="date">10分前</div> --}}
               <div class="chat-thread">
+                {{!-- データベースから過去のコメントを表示 --}}
+                <div id="old-thread">
+                  {{#each comments}}
+                  <div>
+                    <div>{{this.name}}さん：{{this.content}}{{this.created_at}}</div>
+                    {{#if this.answer_content}}
+                    <div>{{this.answer_theme}}</div>
+                    <div>{{this.answer_content}}</div>
+                    <div>{{this.answer_name}}さんより</div>
+                    {{/if}}
+                  {{/each}}
+                  </div>
+                </div>
                 <br/>
                 <div id="thread"></div>
               </div>
@@ -170,6 +182,7 @@
 </div>
 
 <script src="/javascripts/publish.js"></script>
+<script src="/javascripts/enter.js"></script>
 <script src="/javascripts/memo.js"></script>
 <script src="/javascripts/socket.js"></script>
 <script src="/socket.io/socket.io.js"></script>

@@ -9,6 +9,5 @@ function enter() {
         alert('ユーザ名を入力してください');
         return false;
     }
-
     $('form').submit();
 }
