@@ -73,7 +73,7 @@
                     <input id="message"  class="form-control input-sm" placeholder="お題を投稿する">
                 </div>
                 <div class="room-submit col-2">
-                    <input type="button" value="投稿" class="btn btn-dark room-publish_button" onclick="publish();">
+                    <input type="button" value="投稿" id="theme" class="btn btn-dark room-publish_button" onclick="publish(this.id);">
                 </div>
             </div>
         </form>
@@ -101,6 +101,7 @@
                         <div class="balloon3 float-right">
                         　替え玉一杯無料
                         <br/>
+                        <button type="button" onclick="">コメント</button> 
                         </div>
                         <div style="margin-left: auto;">{{userName}}さんより</div>
                     </div>
@@ -119,7 +120,7 @@
                       <input id="message"  class="form-control input-sm" placeholder="回答を投稿する">
                   </div>
                   <div class="room-submit col-2">
-                      <input type="button" value="投稿" class="btn btn-dark room-publish_button" onclick="publish();">
+                      <input type="button" value="投稿" id="answer" class="btn btn-dark room-publish_button" onclick="publish(this.id);">
                   </div>
               </div>
             </form>
@@ -174,7 +175,7 @@
                   <input id="message"  class="form-control input-sm" placeholder="回答を投稿する">
               </div>
               <div class="room-submit col-2">
-                  <input type="button" value="投稿" class="btn btn-dark room-publish_button" onclick="publish();">
+                  <input type="button" value="投稿" id="chat" class="btn btn-dark room-publish_button" onclick="publish(this.id);">
               </div>
               <div class="room-submit col-2">
                   <input type="button" value="メモ" class="btn btn-dark room-memo_button" onclick="memo();">

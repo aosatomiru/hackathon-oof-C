@@ -3,25 +3,27 @@
 const socket = io.connect();
 
 // 投稿メッセージをサーバに送信する
-function publish() {
+function publish(field) {
 
     // 投稿日時を取得する
     let nowDate = getNow();
     // 入力されたメッセージを取得
-    const message = $('.chat-message #message').val();
+    const message = $('.' + field + '-message #message').val();
+    console.log(message, field)
     if (message.trim()){
         const date = nowDate;
         // 投稿内容を送信
-        socket.emit('sendMessageEvent', message + date);
+        socket.emit('sendMessageEvent', message + date, field);
     }
     return false;
 }
 
 // サーバから受信した投稿メッセージを画面上に表示する
-socket.on('receiveMessageEvent', function (data) {
+socket.on('receiveMessageEvent', function (data, field) {
     // ユーザ名を取得
     const userName = $('#userName').val();
-    $('.chat-thread #thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
+    console.log(field);
+    $('.' + field + '-thread #thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
 });
 
 function getNow(){
