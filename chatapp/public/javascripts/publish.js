@@ -1,24 +1,5 @@
 'use strict';
 
-// データベースから過去のコメントを取得する
-const sqlite3 = require("sqlite3");
-const db = new sqlite3.Database("./ogiri.db");
-
-db.serialize(() => {
-	db.all("select * from comments", (error, comments) => {
-		if(error) {
-			console.error('Error!', error);
-			return;
-		}
-		console.log(comments);
-		return comments;
-        // コメント全件を配列で返す
-        // comments.nameなどで値を取り出せる
-	});
-});
-
-db.close();
-
 const socket = io.connect();
 
 // 投稿メッセージをサーバに送信する
@@ -26,8 +7,6 @@ function publish() {
 
     // 投稿日時を取得する
     let nowDate = getNow();
-    // ユーザ名を取得
-    const userName = $('#userName').text();
     // 入力されたメッセージを取得
     const message = $('.chat-message #message').val();
     if (message.trim()){
@@ -40,6 +19,8 @@ function publish() {
 
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
+    // ユーザ名を取得
+    const userName = $('#userName').val();
     $('.chat-thread #thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
 });
 
