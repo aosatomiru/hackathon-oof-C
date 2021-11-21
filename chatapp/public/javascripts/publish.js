@@ -15,7 +15,9 @@ function publish(field) {
             let answer_name = document.getElementById("answer_name");
             let theme = document.getElementById("re-theme");
 
+            console.log(message);
             message += date + '<br>' + theme.innerHTML + '<br>' + answer.innerHTML + '<br>' + answer_name.innerHTML;
+            console.log(message);
             // 投稿内容を送信
             socket.emit('sendMessageEvent', message, field);
         }else{
@@ -55,7 +57,7 @@ function comment(){
     return false;
 }
 
-function close(){
+$('#close').on('click',function(){
     $('.js-modal').fadeOut();
     return false;
-}
+});

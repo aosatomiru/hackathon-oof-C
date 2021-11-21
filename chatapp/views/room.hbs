@@ -93,12 +93,12 @@
               <div class="balloon2 float-left">
                 {{!-- 　完飲したラーメン丼。書かれてて嫌なことは？ --}}
                 {{!-- <br /> --}}
-                {{#each comments}}
+                {{#each themes}}
                 <div id="re-theme">{{this.content}}お題</div>
                 <div>{{this.created_at}}</div>
                 {{/each}}
               </div>
-              {{#each comments}}
+              {{#each themes}}
               <div style="margin-left: auto;">{{this.name}}さんより</div>
               {{/each}}
             </div>
@@ -109,7 +109,7 @@
                 {{!-- データベースから過去のコメントを表示 --}}
                 <div id="old-thread">
                   <div>
-                    {{#each comments}}
+                    {{#each answers}}
                     <div id="answer">{{this.content}}回答</div>
                     <div>{{this.created_at}}</div>
                     {{/each}}
@@ -124,7 +124,7 @@
                 {{!-- コメントボタン --}}
                 <input type="button" value="コメント" class="btn btn-light js-modal-open" onclick="comment();">
                 <div class="modal js-modal">
-                  <div class="modal__bg js-modal-close"></div>
+                  {{!-- <div class="modal__bg js-modal-close"></div> --}}
                   <div class="modal__content">
                     <form method="post" action="/">
                       <div class="form-row answer-column">
@@ -132,22 +132,24 @@
                           <input id="message" class="form-control input-sm" placeholder="回答を投稿する">
                         </div>
                         <div class="room-submit col-2">
-                          <input type="button" value="投稿" id="comment2chat" class="btn btn-dark room-publish_button"
+                          <input type="button" value="投稿" id="comment2chat" class="btn btn-light room-publish_button"
                             onclick="publish(this.id);">
                         </div>
                         <div class="room-submit col-2">
-                          <input type="button" value="メモ" id="comment2chat" class="btn btn-dark room-memo_button"
+                          <input type="button" value="メモ" id="comment2chat" class="btn btn-light room-memo_button"
                             onclick="memo(this.id);">
+                        </div>
+                        <div class="room-submit col-2">
+                          <button id="close" class="btn btn-light">閉じる</button>
                         </div>
                       </div>
                     </form>
-                    <a class="js-modal-close" onclick="close();" href="">閉じる</a>
                   </div>
                   <!--modal__inner-->
                 </div>
                 <!--modal-->
               </div>
-              {{#each comments}}
+              {{#each answers}}
               <div style="margin-left: auto;" id="answer_name">{{this.name}}さんより</div>
               {{/each}}
               {{!-- <div style="margin-left: auto;">{{userName}}さんより</div> --}}
@@ -223,10 +225,12 @@
             <input id="message" name="commentText" class="form-control input-sm" placeholder="コメントを投稿する">
           </div>
           <div class="room-submit col-2">
-            <input type="submit" name="commentPublish"  value="投稿" id="chat" class="btn btn-dark room-publish_button" onclick="publish(this.id);">
+            <input type="submit" name="commentPublish" value="投稿" id="chat" class="btn btn-dark room-publish_button"
+              onclick="publish(this.id);">
           </div>
           <div class="room-submit col-2">
-            <input type="button" name="commentMemo" value="メモ" id="chat" class="btn btn-dark room-memo_button" onclick="memo(this.id);">
+            <input type="button" name="commentMemo" value="メモ" id="chat" class="btn btn-dark room-memo_button"
+              onclick="memo(this.id);">
           </div>
         </div>
       </form>
