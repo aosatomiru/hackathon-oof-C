@@ -29,13 +29,43 @@ router.post('/room', function(request, response, next) {
         }
         return false;
 
-    }else if(request.body.hoge){ // 引用コメント投稿ボタン（name=""）が押されたときの処理
+    }else if(request.body.quotePublish){ // 引用コメント投稿ボタン（name="quotePublish)"）が押されたときの処理
+        const message = request.body.commentText;
+        // 入力されたメッセージが空やスペースのみでないとき
+        if (message.trim()){
+            db.serialize(() => {
+                // データベースに名前。投稿内容、日時を登録
+                db.run("insert into comments(name, content) values(?,?)",getUserName, message);
+                console.log("保存完了！")
+            });
+        }
+        return false;
 
 
-    }else if(request.body.hoge){ // お題投稿ボタン（name=""）が押されたときの処理
+    }else if(request.body.themePublish){ // お題投稿ボタン（name="themePublish"）が押されたときの処理
+        const message = request.body.commentText;
+        // 入力されたメッセージが空やスペースのみでないとき
+        if (message.trim()){
+            db.serialize(() => {
+                // データベースに名前。投稿内容、日時を登録
+                db.run("insert into comments(name, content) values(?,?)",getUserName, message);
+                console.log("保存完了！")
+            });
+        }
+        return false;
 
 
-    }else if(request.body.hoge){ // 回答投稿ボタン（name=""）が押されたときの処理
+    }else if(request.body.answerPublish){ // 回答投稿ボタン（name="answerPublish"）が押されたときの処理
+        const message = request.body.commentText;
+        // 入力されたメッセージが空やスペースのみでないとき
+        if (message.trim()){
+            db.serialize(() => {
+                // データベースに名前。投稿内容、日時を登録
+                db.run("insert into comments(name, content) values(?,?)",getUserName, message);
+                console.log("保存完了！")
+            });
+        }
+        return false;
 
 
     }else{ // ログインしたときの処理
