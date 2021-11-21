@@ -2,7 +2,7 @@ html,
 /* 全画面共通*/
 body {
   -ms-flex-align: center;
-  height: 100%; 
+  height: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
   background:  linear-gradient(#fff67f, #fc6907);
@@ -32,240 +32,306 @@ body {
 }
 
 /* room画面 */
-  .room-login_user {
-    margin-left: auto;
-    color: #ffffff;
-  }
+.room-login_user {
+  margin-left: auto;
+  color: #ffffff;
+}
 
-  /* bootstrapの余白を消す */
+/* bootstrapの余白を消す */
 
+section {
+  width: 80%;
+  height: 92%;
+  margin: 0 auto;
+}
+
+/* スマホ用 */
+
+@media screen and (max-width: 768px) {
   section {
-    width: 80%;
-    height: 80%;
-    margin: 0 auto;
-  }
-
-  /* スマホ用 */
-  @media screen and (max-width: 768px) {
-    section {
-      width: 95%;
-    }
-
-    aside {
-      display: none;
-    }
-  }
-
-  @media screen and (max-width: 992px) {
-    aside {
-      display: none;
-    }
-  }
-
-  .line-bc {
-
-    padding: 20px 10px;
-    max-width: 868px;
-    margin: 0px 0px;
-    font-size: 14px;
-    height: 480px;
-    background: #5e5e5e80;
-    overflow-y: scroll;
-  }
-
-  .line-cd {
-    padding: 20px 10px;
-    max-width: 868px;
-    margin: 0px auto;
-    font-size: 14px;
-    height: 480px;
-    background: #fffab1;
-    overflow-y: scroll;
-  }
-
-  /* 吹き出し左 */
-  .balloon1 {
-    position: relative;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: rgb(230, 201, 36);
-    color: rgb(51, 51, 51);
-    max-width: 250px;
-    font-size: 15px;
-    font-weight: bolder;
-    word-wrap: break-word;
-    margin-left: 10px;
-  }
-
-  .balloon2 {
-    position: relative;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: rgb(230, 201, 36);
-    color: rgb(51, 51, 51);
-    max-width: 250px;
-    font-size: 15px;
-    font-weight: bolder;
-    word-wrap: break-word;
-    margin-left: 10px;
-  }
-
-  /* 三角アイコン左 */
-  .balloon2::before {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 3px;
-    left: -19px;
-    border: 8px solid transparent;
-    border-right: 18px solid rgb(230, 201, 36);
-    -webkit-transform: rotate(35deg);
-    transform: rotate(35deg);
-  }
-  /* 吹き出し右 */
-  .balloon3 {
-    position: relative;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: rgb(75, 75, 75);
-    color: #f7f7f7;
-    max-width: 250px;
-    font-size: 15px;
-    word-wrap: break-word;
-    margin-right: 20px;
-  }
-
-  /* 三角アイコン右 */
-  .balloon3::before {
-    content: '';
-    position: absolute;
-    top: 3px;
-    right: -19px;
-    border: 8px solid transparent;
-    border-left: 18px solid rgb(75, 75, 75);
-    -webkit-transform: rotate(-35deg);
-    transform: rotate(-35deg);
-  }
-  /* 回答欄*/
-  .answer-column{
-    position: relative;
-    bottom: 0;
-  }
-
-  /* twitter風チャット欄 */
-  .twitter__container {
-    padding: 0;
-    background: #ffffff;
-    overflow: hidden;
-    max-width: 400px;
-    margin: 20px auto;
-    font-size: 80%;
-    border: solid 1px #eeeeee;
-  }
-  
-  .twitter__container a {
-    color: #58aeed;
-  }
-  
-  /* タイトル部分 */
-  .twitter__container .twitter__title {
-    background: #58aeed;
-    padding: 10px;
-    text-align: center;
-    font-size: 150%;
-    color: #ffffff;
-  }
-  
-  .twitter__container .twitter__title .twitter-logo {
-    margin: 0 auto;
-    width: 20px;
-    height: 20px;
-    display: block;
-    background: url(svg/twitter-logo.svg) center no-repeat;
-  }
-  
-  .twitter__container .twitter__title span {
-    font-size: 20px;
-  }
-  
-  /* タイムライン部分 */
-  .twitter__container .twitter__contents {
-    overflow-y: scroll;
-    position: relative;
-    line-height: 135%;
-  }
-  
-  .twitter__container .twitter__contents.scroll {
-    padding: 20px 10px;
-    max-width: 868px;
-    margin: 0px 0px;
-    height: 420px;
-    overflow-y: scroll;
-  }
-  
-  
-  .twitter__container .twitter__block {
-    width: 100%;
-    display: block;
-    padding: 10px;
-    margin-bottom: 5px;
-    border-bottom: solid 1px #eeeeee;
-    overflow: hidden;
-  }
-  
-  .twitter__container .twitter__block:last-child {
-    border-bottom: solid 0px;
-  }
-  /* アイコン画像 */
-  .twitter__container .twitter__block figure {
-    width: 50px;
-    padding: 0;
-    margin: 0;
-    float: left;
-    width: 50px;
-  }
-    /* 正方形を用意 */
-  .twitter__container .twitter__block figure img {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-  }
-  /* コメントエリア */
-  .twitter__container .twitter__block-text {
-    margin: 0;
-    position: relative;
-    margin-left: 60px;
-    padding-right: 10px;
-  }
-  
-  .twitter__container .twitter__block-text .name {
-    font-weight: bold;
-  }
-  
-  .twitter__container .twitter__block-text .name .name_reply {
-    color: #8a9aa4;
-    margin-left: 10px;
-  }
-  
-  .twitter__container .twitter__block-text .date {
-    position: absolute;
-    top: 0;
-    right: 20px;
-    text-align: right;
-    color: #8a9aa4;
-  }
-  /* 本文 */
-  .twitter__container .twitter__block-text .text {
-    margin: 5px 0;
-  }
-  /* 画像を貼る場合 */
-  .twitter__container .twitter__block-text .text .in-pict img {
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    margin: 5px 0;
     width: 95%;
-    height: 200px;
-    object-fit: cover;
   }
-  
+
+  aside {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  aside {
+    display: none;
+  }
+}
+
+.theme {
+  border-radius: 5px;
+  background: #31363A;
+  width: 100%;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.theme.open-answer{
+  width: 50%;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
+}
+
+.answer {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: #fffab1;
+  width: 0%;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.answer form, .answer .answer-column{
+  display: none;
+}
+
+.answer.open-answer{
+  display: block;
+  width: 50%;
+}
+
+.answer.open-answer form, .answer.open-answer .answer-column{
+  display: flex;
+}
+
+.show-theme-icon {
+  display: none;
+  color: white;
+  font-size: 25px;
+}
+
+@media screen and (max-width: 575px) {
+  .theme.open-answer{
+    width: 10%;
+  }
+  .theme.open-answer section{
+    display: none;
+  }
+  .theme.open-answer form{
+    display: none;
+  }
+  .theme.open-answer .show-theme-icon{
+    display: block;
+  }
+
+  .answer.open-answer{
+    width: 90%;
+  }
+}
+
+.line-bc {
+
+  padding: 20px 10px;
+  max-width: 868px;
+  margin: 0px 0px;
+  font-size: 14px;
+  height: 480px;
+  overflow-y: scroll;
+}
+
+.line-cd {
+  padding: 20px 10px;
+  max-width: 868px;
+  margin: 0px auto;
+  font-size: 14px;
+  height: 480px;
+  overflow-y: scroll;
+}
+
+/* 吹き出し左 */
+.balloon1 {
+  position: relative;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(230, 201, 36);
+  color: rgb(51, 51, 51);
+  max-width: 250px;
+  font-size: 15px;
+  font-weight: bolder;
+  word-wrap: break-word;
+  margin-left: 10px;
+}
+
+.balloon2 {
+  position: relative;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(230, 201, 36);
+  color: rgb(51, 51, 51);
+  max-width: 250px;
+  font-size: 15px;
+  font-weight: bolder;
+  word-wrap: break-word;
+  margin-left: 10px;
+}
+
+/* 三角アイコン左 */
+.balloon2::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 3px;
+  left: -19px;
+  border: 8px solid transparent;
+  border-right: 18px solid rgb(230, 201, 36);
+  -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+/* 吹き出し右 */
+.balloon3 {
+  position: relative;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(75, 75, 75);
+  color: #f7f7f7;
+  max-width: 250px;
+  font-size: 15px;
+  word-wrap: break-word;
+  margin-right: 20px;
+}
+
+/* 三角アイコン右 */
+.balloon3::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: -19px;
+  border: 8px solid transparent;
+  border-left: 18px solid rgb(75, 75, 75);
+  -webkit-transform: rotate(-35deg);
+  transform: rotate(-35deg);
+}
+/* 回答欄*/
+.answer-column{
+  max-width: 90%;
+  margin: 0 auto;
+  position: relative;
+  bottom: 0;
+}
+
+/* twitter風チャット欄 */
+.twitter__container {
+  height: 100%;
+  padding: 0;
+  background: #ffffff;
+  overflow: hidden;
+  max-width: 400px;
+  font-size: 80%;
+  border: solid 1px #eeeeee;
+}
+
+.twitter__container a {
+  color: #58aeed;
+}
+
+/* タイトル部分 */
+.twitter__container .twitter__title {
+  background: #58aeed;
+  padding: 10px;
+  text-align: center;
+  font-size: 150%;
+  color: #ffffff;
+  height: 7%;
+}
+
+.twitter__container .twitter__title .twitter-logo {
+  margin: 0 auto;
+  width: 20px;
+  height: 20px;
+  display: block;
+  background: url(svg/twitter-logo.svg) center no-repeat;
+}
+
+.twitter__container .twitter__title span {
+  font-size: 20px;
+}
+
+/* タイムライン部分 */
+.twitter__container .twitter__contents {
+  overflow-y: scroll;
+  position: relative;
+  line-height: 135%;
+}
+
+.twitter__container .twitter__contents.scroll {
+  padding: 20px 10px;
+  max-width: 868px;
+  margin: 0px 0px;
+  height: 85%;
+  overflow-y: scroll;
+}
+
+
+.twitter__container .twitter__block {
+  width: 100%;
+  display: block;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-bottom: solid 1px #eeeeee;
+  overflow: hidden;
+}
+
+.twitter__container .twitter__block:last-child {
+  border-bottom: solid 0px;
+}
+/* アイコン画像 */
+.twitter__container .twitter__block figure {
+  width: 50px;
+  padding: 0;
+  margin: 0;
+  float: left;
+  width: 50px;
+}
+  /* 正方形を用意 */
+.twitter__container .twitter__block figure img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+/* コメントエリア */
+.twitter__container .twitter__block-text {
+  margin: 0;
+  position: relative;
+  margin-left: 60px;
+  padding-right: 10px;
+}
+
+.twitter__container .twitter__block-text .name {
+  font-weight: bold;
+}
+
+.twitter__container .twitter__block-text .name .name_reply {
+  color: #8a9aa4;
+  margin-left: 10px;
+}
+
+.twitter__container .twitter__block-text .date {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  text-align: right;
+  color: #8a9aa4;
+}
+/* 本文 */
+.twitter__container .twitter__block-text .text {
+  margin: 5px 0;
+}
+/* 画像を貼る場合 */
+.twitter__container .twitter__block-text .text .in-pict img {
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  margin: 5px 0;
+  width: 95%;
+  height: 200px;
+  object-fit: cover;
+}

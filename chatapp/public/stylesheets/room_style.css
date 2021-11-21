@@ -1,7 +1,7 @@
 html,
 body {
     margin: 0;
-    
+
     padding-top: 15px;
     padding-bottom: 15px;
     background:  linear-gradient(#fff67f, #fc6907);
@@ -50,13 +50,14 @@ body {
       display: none;
     }
   }
-
+  .theme {
+    background: #5e5e5e80;
+  }
   .line-bc {
     padding: 20px 10px;
     max-width: 868px;
     margin: 10px auto;
     font-size: 14px;
-    background: #5e5e5e80;
     overflow:auto;
   }
 
