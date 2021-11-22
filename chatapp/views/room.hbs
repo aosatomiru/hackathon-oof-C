@@ -42,40 +42,13 @@
                     </div>
                     <div style="margin-left: auto;">{{this.name}}さんより</div>
                 </div>
+                <br />
                 {{/each}}
 
-                {{!-- <div class="clearfix">
-                    <br />
-                    <div class="balloon1 float-left">
-                    　完飲したラーメン丼。書かれてて嫌なことは？
-                    <br />
-                    <input type="button" value="回答を見る" class="btn btn-secondary" onclick="">
-                    </div>
-                    <div style="margin-left: auto;">{{userName}}さんより</div>
-                </div>
-                <div class="clearfix">
-                    <br />
-                    <div class="balloon1 float-left">
-                    　完飲したラーメン丼。書かれてて嫌なことは？
-                    <br />
-                    <input type="button" value="回答を見る" class="btn btn-secondary" onclick=""> --}}
-                    {{!-- </div>
-                    <div style="margin-left: auto;">{{userName}}さんより</div>
-                </div>
-                <div class="clearfix">
-                    <br />
-                    <div class="balloon1 float-left">
-                    　完飲したラーメン丼。書かれてて嫌なことは？
-                    <br />
-                    <input type="button" value="回答を見る" class="btn btn-secondary" onclick="">
-                    </div>
-                    <div style="margin-left: auto;">{{userName}}さんより</div>
-                </div> --}}
                 <!--ココに投稿したお題が収納-->
-                <div class="theme-thread">
-                    <br />
-                    <div id="thread"></div>
+                <div class="clearfix theme-threads">
                 </div>
+                
             </div>
         </section>
         <!-- section -->
@@ -169,10 +142,12 @@
                 {{!-- <div style="margin-left: auto;">{{userName}}さんより</div> --}}
               </div>
               <!--ココに投稿したお題が収納-->
-              <div class="answer-thread">
+              <div class="clearfix answer-threads">
+              </div>
+              {{!-- <div class="answer-thread">
                 <br />
                 <div id="thread"></div>
-              </div>
+              </div> --}}
             </div>
           </div>
         </section>

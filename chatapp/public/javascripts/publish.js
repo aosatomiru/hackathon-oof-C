@@ -1,5 +1,6 @@
 'use strict';
 const socket = io.connect();
+const count = 0;
 // 投稿メッセージをサーバに送信する
 function publish(field) {
 
@@ -13,7 +14,7 @@ function publish(field) {
         if (field === "comment2chat"){
             let answer = document.getElementById("answer");
             let answer_name = document.getElementById("answer_name");
-            let theme = document.getElementById("re-theme");
+            let theme = document.getElementByName("re-theme");
 
             console.log(message);
             message += date + '<br>' + theme.innerHTML + '<br>' + answer.innerHTML + '<br>' + answer_name.innerHTML;
@@ -34,8 +35,23 @@ socket.on('receiveMessageEvent', function (data, field) {
     const userName = $('#userName').val();
     if (field == 'comment2chat'){
         $('.chat-thread #thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
-    }else{
-        $('.' + field + '-thread #thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
+    }else if (field == 'chat'){
+        $('.chat-thread #thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
+    }else if (field == 'theme'){
+        console.log(field);
+        $('.theme-threads').append('<div class="balloon1 float-left theme-thread" name="re-theme"></div>');
+        $('.theme-thread').last().append('<input type="button" value="回答を見る" class="btn btn-secondary" onclick="openAnswer();"></input>');
+        $('.theme-threads').append('<div style="margin-left: auto;">' + userName + 'さんより</div>');
+        $('.theme-threads').append('<br>');
+        $('.theme-thread').last().prepend('<p>' + data.replace('\n', '<br>') + '</p>');
+    }
+    else if (field == 'answer'){
+        console.log(field);
+        $('.answer-threads').append('<div class="balloon3 float-right answer-thread"></div>');
+        $('.answer-thread').last().append('<input type="button" value="コメント" class="btn btn-light js-modal-open" onclick="comment();">');
+        $('.answer-threads').append('<div style="margin-left: auto;">' + userName + 'さんより</div>');
+        $('.answer-threads').append('<br>');
+        $('.answer-thread').last().prepend('<p>' + data.replace('\n', '<br>') + '</p>');
     }
 });
 
