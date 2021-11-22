@@ -36,6 +36,17 @@
                     <div class="balloon1 float-left">
                         <div id="re-theme">{{this.content}}お題</div>
                     　完飲したラーメン丼。書かれてて嫌なことは？
+<<<<<<< Updated upstream
+                     <br />
+                        <input type="button" value="回答を見る" class="btn btn-secondary" onclick="openAnswer();">
+                    </div>
+                </div>
+                {{#each themes}}
+                <div class="clearfix">
+                    <br />
+                    <div class="balloon1 float-left">
+                        <div id="re-theme">{{this.content}}お題</div>
+                    　完飲したラーメン丼。書かれてて嫌なことは？
                     <br />
                         <div>{{this.created_at}}</div>
                     <input type="button" value="回答を見る" class="btn btn-secondary" onclick="openAnswer();">
@@ -177,8 +188,36 @@
         <span class="twitter-logo"></span>
       </div>
 
+<<<<<<< Updated upstream
       <!-- ▼タイムラインエリア scrollを外すと高さ固定解除 -->
       <div class="twitter__contents scroll">
+=======
+          <!-- 記事エリア -->
+          <div class="twitter__block">
+            <div class="twitter__block-text">
+                <div class="room-login_user">
+                ログインユーザ：{{userName}}さん
+                <input id="userName" type="hidden" value={{userName}}>
+                </div>
+              {{!-- <div class="date">10分前</div> --}}
+              <div class="chat-thread">
+                {{!-- データベースから過去のコメントを表示 --}}
+                <div id="old-thread">
+                  {{#each comments}}
+                  <div>
+                    <div>{{this.name}}さん：{{this.content}}{{this.created_at}}</div>
+                    {{#if this.answer_content}}
+                    <div>{{this.answer_theme}}</div>
+                    <div>{{this.answer_content}}</div>
+                    <div>{{this.answer_name}}さんより</div>
+                    {{/if}}
+                  {{/each}}
+                  </div>
+                </div>
+                <!-- /#old-thread -->
+                <br/>
+                <div id="thread">
+>>>>>>> Stashed changes
 
         <!-- 記事エリア -->
         <div class="twitter__block">
@@ -187,6 +226,7 @@
               ログインユーザ：{{userName}}さん
               <input id="userName" type="hidden" value={{userName}}>
             </div>
+<<<<<<< Updated upstream
             <div class="chat-thread">
               {{!-- データベースから過去のコメントを表示 --}}
               <div id="old-thread">
@@ -226,11 +266,30 @@
         </div>
       </div>
     </form>
+=======
+          </div>
+        </div>
+        <!-- 入力フォーム -->
+        <form method="post" action="/">
+        <div class="form-row answer-column">
+            <div class="chat-message col-8">
+                <input id="message"  class="form-control input-sm" placeholder="回答を投稿する">
+            </div>
+            <div class="room-submit col-2">
+                <input type="button" value="投稿" class="btn btn-dark room-publish_button" onclick="publish();">
+            </div>
+            <div class="room-submit col-2">
+                <input type="button" value="メモ" class="btn btn-dark room-memo_button" onclick="memo();">
+            </div>
+        </div>
+        </form>
+>>>>>>> Stashed changes
     </div>
   </div>
   </div>
 <!-- /.container -->
 
+<<<<<<< Updated upstream
   <script src="/javascripts/publish.js"></script>
   <script src="/javascripts/enter.js"></script>
   <script src="/javascripts/memo.js"></script>
@@ -238,3 +297,10 @@
   <script src="/javascripts/socket.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
+=======
+<script src="/javascripts/publish.js"></script>
+<script src="/javascripts/memo.js"></script>
+<script src="/javascript/transit_screen.js"></script>
+<script src="/javascripts/socket.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+>>>>>>> Stashed changes
