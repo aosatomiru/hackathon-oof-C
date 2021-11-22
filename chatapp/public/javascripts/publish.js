@@ -3,7 +3,8 @@ const socket = io.connect();
 const count = 0;
 // 投稿メッセージをサーバに送信する
 function publish(field) {
-
+    // 隠しinputタグのvalueに一意な文字列を設定
+    document.getElementById( "uniqueID" ).value = getUniqueStr();
     // 投稿日時を取得する
     let nowDate = getNow();
     // 入力されたメッセージを取得
@@ -15,17 +16,21 @@ function publish(field) {
             let answer = document.getElementById("answer");
             let answer_name = document.getElementById("answer_name");
             let theme = document.getElementByName("re-theme");
-
             console.log(message);
             message += date + '<br>' + theme.innerHTML + '<br>' + answer.innerHTML + '<br>' + answer_name.innerHTML;
             console.log(message);
             // 投稿内容を送信
             socket.emit('sendMessageEvent', message, field);
+        }else if (field === "theme"){
+            socket.emit('sendMessageEvent', message, field);
         }else{
             socket.emit('sendMessageEvent', message + date, field);
-            saveData();
         }
     }
+    // データベースに保存
+    const $form = $('#' + field + 'Form');
+    $form.submit();
+    $form[0].reset();
     return false;
 }
 
@@ -38,9 +43,13 @@ socket.on('receiveMessageEvent', function (data, field) {
     }else if (field == 'chat'){
         $('.chat-thread #thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
     }else if (field == 'theme'){
+        // ID用に一意な文字列を取得
+        const uniqueID = $('#uniqueID').val();
+        // 吹き出しを表示する
         console.log(field);
         $('.theme-threads').append('<div class="balloon1 float-left theme-thread" name="re-theme"></div>');
-        $('.theme-thread').last().append('<input type="button" value="回答を見る" class="btn btn-secondary" onclick="openAnswer();"></input>');
+        $('.theme-thread').last().append('<input type="hidden" value="' + uniqueID +'" id="uniqueShowID"></input>');
+        $('.theme-thread').last().append('<input type="submit" value="回答を見る" class="btn btn-secondary" onclick="openAnswer();"></input>');
         $('.theme-threads').append('<div style="margin-left: auto;">' + userName + 'さんより</div>');
         $('.theme-threads').append('<br>');
         $('.theme-thread').last().prepend('<p>' + data.replace('\n', '<br>') + '</p>');
@@ -53,6 +62,7 @@ socket.on('receiveMessageEvent', function (data, field) {
         $('.answer-threads').append('<br>');
         $('.answer-thread').last().prepend('<p>' + data.replace('\n', '<br>') + '</p>');
     }
+
 });
 
 function getNow(){
@@ -77,3 +87,7 @@ $('#close').on('click',function(){
     $('.js-modal').fadeOut();
     return false;
 });
+// 一意な文字列を取得
+function getUniqueStr(){
+    return new Date().getTime().toString(16)  + Math.floor(1000*Math.random()).toString(16)
+}

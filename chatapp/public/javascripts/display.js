@@ -7,7 +7,7 @@ function openAnswer(){
 	let answerArea = document.getElementById("answer-area");
 	answerArea.classList.add("open-answer");
 }
-
+// アイコンを押すと、#theme-area,#answer-areaから.open-answerを削除
 function closeAnswer(){
 	let themeArea = document.getElementById("theme-area");
 	themeArea.classList.remove("open-answer");

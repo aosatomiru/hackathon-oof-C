@@ -16,7 +16,7 @@ router.post('/room', function(request, response, next) {
     // ユーザーネームを取得
     let getUserName = request.body.userName;
 
-    if(request.body.commentPublish){ // コメント投稿ボタン（name="commentPublish"）が押されたときの処理
+    if(request.body.commentText){ // コメント投稿ボタンが押されたときの処理
         // 入力されたメッセージを取得
         const message = request.body.commentText;
         // 入力されたメッセージが空やスペースのみでないとき
@@ -24,50 +24,46 @@ router.post('/room', function(request, response, next) {
             db.serialize(() => {
                 // データベースに名前。投稿内容、日時を登録
                 db.run("insert into comments(name, content) values(?,?)",getUserName, message);
-                console.log("保存完了！")
+                console.log("保存完了！");
             });
         }
-        return false;
-
-    }else if(request.body.quotePublish){ // 引用コメント投稿ボタン（name="quotePublish)"）が押されたときの処理
-        const message = request.body.commentText;
+        // room.hbsをデータとともに表示させる
+    }else if(request.body.comment2chatText){ // 引用コメント投稿ボタンが押されたときの処理
+        // 入力されたメッセージを取得
+        const message = request.body.comment2chatText;
         // 入力されたメッセージが空やスペースのみでないとき
         if (message.trim()){
             db.serialize(() => {
                 // データベースに名前。投稿内容、日時を登録
-                db.run("insert into comments(name, content) values(?,?)",getUserName, message);
-                console.log("保存完了！")
+                db.run("insert into comments(name, content) values(?,?)", getUserName, message);
+                console.log("保存完了！");
             });
         }
-        return false;
 
-
-    }else if(request.body.themePublish){ // お題投稿ボタン（name="themePublish"）が押されたときの処理
-        const message = request.body.commentText;
+    }else if(request.body.themeText){ // お題投稿ボタンが押されたときの処理
+        // 入力されたメッセージを取得
+        const message = request.body.themeText;
+        const uniqueID = request.body.uniqueID;
+        console.log(uniqueID);
         // 入力されたメッセージが空やスペースのみでないとき
         if (message.trim()){
             db.serialize(() => {
                 // データベースに名前。投稿内容、日時を登録
-                db.run("insert into comments(name, content) values(?,?)",getUserName, message);
-                console.log("保存完了！")
+                db.run("insert into themes(id, name, content) values(?,?,?)",uniqueID,getUserName, message);
+                console.log("保存完了！");
             });
         }
-        return false;
 
-
-    }else if(request.body.answerPublish){ // 回答投稿ボタン（name="answerPublish"）が押されたときの処理
-        const message = request.body.commentText;
+    }else if(request.body.answerText){ // 回答投稿ボタンが押されたときの処理
+        const message = request.body.answerText;
         // 入力されたメッセージが空やスペースのみでないとき
         if (message.trim()){
             db.serialize(() => {
                 // データベースに名前。投稿内容、日時を登録
-                db.run("insert into comments(name, content) values(?,?)",getUserName, message);
-                console.log("保存完了！")
+                db.run("insert into answers(name, content) values(?,?)",getUserName, message);
+                console.log("保存完了！");
             });
         }
-        return false;
-
-
     }else{ // ログインしたときの処理
         // room.hbsに渡すデータを入れる配列を作成
         let databaseData = new Object();
@@ -76,7 +72,7 @@ router.post('/room', function(request, response, next) {
         db.serialize(() => {
             //お題テーブルの作成
                 db.run("create table if not exists themes (\
-                id integer primary key autoincrement, \
+                id text primary key, \
                 name text, \
                 content text, \
                 created_at text default current_timestamp)");
@@ -86,7 +82,7 @@ router.post('/room', function(request, response, next) {
                 id integer primary key autoincrement, \
                 name text, \
                 content text, \
-                theme_id integer, \
+                theme_id text, \
                 created_at text default current_timestamp, \
                 foreign key (theme_id) references themes(id))");
 

@@ -22,55 +22,38 @@
         <section>
         <!-- 投稿一覧 -->
             <div class="line-bc">
-                <div>
-                    <!--sample文章（完成時には削除）-->
-                    <div class="balloon1 float-left">
-                        <div>完飲したラーメン丼。書かれてて嫌なことは？</div>
-                        <br />
-                        <input type="button" value="回答を見る" class="btn btn-secondary" onclick="openAnswer();">
-                    </div>
-                </div>
-                {{#each themes}}
-                <div class="clearfix">
+              <!--sample文章（完成時には削除）-->
+                <div class="balloon1 float-left">
+                    <div>完飲したラーメン丼。書かれてて嫌なことは？</div>
                     <br />
-                    <div class="balloon1 float-left">
-                        <div id="re-theme">{{this.content}}お題</div>
-                    　完飲したラーメン丼。書かれてて嫌なことは？
-<<<<<<< Updated upstream
-                     <br />
-                        <input type="button" value="回答を見る" class="btn btn-secondary" onclick="openAnswer();">
-                    </div>
-                </div>
-                {{#each themes}}
-                <div class="clearfix">
-                    <br />
-                    <div class="balloon1 float-left">
-                        <div id="re-theme">{{this.content}}お題</div>
-                    　完飲したラーメン丼。書かれてて嫌なことは？
-                    <br />
-                        <div>{{this.created_at}}</div>
                     <input type="button" value="回答を見る" class="btn btn-secondary" onclick="openAnswer();">
-                    </div>
-                    <div style="margin-left: auto;">{{this.name}}さんより</div>
                 </div>
-                <br />
+                {{#each themes}}
+                <div class="balloon1 float-left">
+                    <div>{{this.content}}</div>
+                    <br>
+                    <input type="hidden" value={{this.id}} id="uniqueShowID">
+                    <input type="button" value="回答を見る" class="btn btn-secondary" onclick="openAnswer();">
+                </div>
+                <div style="margin-left: auto;">{{this.name}}さんより</div>
                 {{/each}}
 
                 <!--ココに投稿したお題が収納-->
                 <div class="clearfix theme-threads">
                 </div>
-                
+
             </div>
         </section>
         <!-- section -->
         <!-- 入力エリア -->
-        <form method="post" action="/room">
+        <form method="post" action="/room" id="themeForm" target="saveData">
             <div class="form-row answer-column">
                 <div class="theme-message col-9">
-                    <input id="message" class="form-control input-sm" placeholder="お題を投稿する">
+                    <input id="message" name="themeText" class="form-control input-sm" placeholder="お題を投稿する">
                 </div>
                 <div class="room-submit col-3">
-                    <input type="button" value="投稿" id="theme" class="btn btn-warning room-publish_button"
+                    <input type="hidden" value="" name="uniqueID" id="uniqueID">
+                    <input type="button" name="themePublish" value="投稿" id="theme" class="btn btn-warning room-publish_button btn-publish"
                     onclick="publish(this.id);">
                 </div>
             </div>
@@ -78,7 +61,7 @@
     </div>
     <!-- 回答　-->
     <div class="answer py-1" id="answer-area">
-      <form method="post" action="/">
+      <form method="post" action="/" id="answerForm" target="saveData">
         <!-- section -->
         <section>
 
@@ -111,8 +94,6 @@
                       <div id="answer">{{this.content}}回答</div>
                       <div>{{this.created_at}}</div>
                       {{/each}}
-                      {{!-- <br />
-                      替え玉一杯無料 --}}
                     </div>
                   </div>
                   <!-- /#old-thread -->
@@ -124,17 +105,17 @@
                   <div class="modal js-modal">
                     {{!-- <div class="modal__bg js-modal-close"></div> --}}
                     <div class="modal__content">
-                      <form method="post" action="/">
+                      <form method="post" action="/" id="comment2chatForm" target="saveData">
                         <div class="form-row answer-column">
                           <div class="comment2chat-message col-8">
-                            <input id="message" class="form-control input-sm" placeholder="回答を投稿する">
+                            <input id="message" name="comment2chatText" class="form-control input-sm" placeholder="回答を投稿する">
                           </div>
                           <div class="room-submit col-2">
-                            <input type="button" value="投稿" id="comment2chat" class="btn btn-light room-publish_button"
+                            <input type="button" value="投稿" name="comment2chat" id="comment2chat" class="btn btn-light room-publish_button btn-publish"
                               onclick="publish(this.id);">
                           </div>
                           <div class="room-submit col-2">
-                            <input type="button" value="メモ" id="comment2chat" class="btn btn-light room-memo_button"
+                            <input type="button" value="メモ" id="comment2chatPublish" class="btn btn-light room-memo_button"
                               onclick="memo(this.id);">
                           </div>
                           <div class="room-submit col-2">
@@ -166,10 +147,10 @@
         <!-- 入力エリア -->
         <div class="form-row answer-column">
           <div class="answer-message col-9">
-            <input id="message" class="form-control input-sm" placeholder="回答を投稿する">
+            <input id="message" name="answerText" class="form-control input-sm" placeholder="回答を投稿する">
           </div>
           <div class="room-submit col-3">
-            <input type="button" value="投稿" id="answer" class="btn btn-warning room-publish_button"
+            <input type="button" name="answerPublish" value="投稿" id="answer" class="btn btn-warning room-publish_button btn-publish"
               onclick="publish(this.id);">
           </div>
         </div>
@@ -188,10 +169,8 @@
         <span class="twitter-logo"></span>
       </div>
 
-<<<<<<< Updated upstream
       <!-- ▼タイムラインエリア scrollを外すと高さ固定解除 -->
       <div class="twitter__contents scroll">
-=======
           <!-- 記事エリア -->
           <div class="twitter__block">
             <div class="twitter__block-text">
@@ -217,7 +196,6 @@
                 <!-- /#old-thread -->
                 <br/>
                 <div id="thread">
->>>>>>> Stashed changes
 
         <!-- 記事エリア -->
         <div class="twitter__block">
@@ -226,7 +204,6 @@
               ログインユーザ：{{userName}}さん
               <input id="userName" type="hidden" value={{userName}}>
             </div>
-<<<<<<< Updated upstream
             <div class="chat-thread">
               {{!-- データベースから過去のコメントを表示 --}}
               <div id="old-thread">
@@ -250,57 +227,33 @@
         </div>
       </div>
       <!-- 入力フォーム -->
-      <form method="post" action="/room">
+      <form method="post" action="/room" id="chatForm" target="saveData">
       <div class="form-row answer-column">
         <div class="chat-message col-7">
           <input type="hidden" name="userName" value={{userName}}>
           <input id="message" name="commentText" class="form-control input-sm" placeholder="コメントを投稿する">
         </div>
         <div class="room-submit col-2 mx-2">
-          <input type="submit" name="commentPublish" value="投稿" id="chat" class="btn btn-warning room-publish_button"
-            onclick="publish(this.id);">
+          <input type="button" name="chatPublish" value="投稿" id="chat" class="btn btn-warning room-publish_button btn-publish" onclick="return publish(this.id);">
         </div>
         <div class="room-submit col-2">
-          <input type="button" name="commentMemo" value="メモ" id="chat" class="btn btn-warning room-memo_button"
+          <input type="button" value="メモ" id="chat" class="btn btn-warning room-memo_button"
             onclick="memo(this.id);">
         </div>
       </div>
     </form>
-=======
-          </div>
-        </div>
-        <!-- 入力フォーム -->
-        <form method="post" action="/">
-        <div class="form-row answer-column">
-            <div class="chat-message col-8">
-                <input id="message"  class="form-control input-sm" placeholder="回答を投稿する">
-            </div>
-            <div class="room-submit col-2">
-                <input type="button" value="投稿" class="btn btn-dark room-publish_button" onclick="publish();">
-            </div>
-            <div class="room-submit col-2">
-                <input type="button" value="メモ" class="btn btn-dark room-memo_button" onclick="memo();">
-            </div>
-        </div>
-        </form>
->>>>>>> Stashed changes
+    <!-- 下記iframe消さないで！ -->
+    <iframe name="saveData" style="width:0px;height:0px;border:0px;"></iframe>
     </div>
   </div>
   </div>
 <!-- /.container -->
 
-<<<<<<< Updated upstream
   <script src="/javascripts/publish.js"></script>
   <script src="/javascripts/enter.js"></script>
   <script src="/javascripts/memo.js"></script>
   <script src="/javascripts/display.js"></script>
-  <script src="/javascripts/socket.js"></script>
+  <script src="/javascript/transit_screen.js"></script>
+<script src="/javascripts/socket.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
-=======
-<script src="/javascripts/publish.js"></script>
-<script src="/javascripts/memo.js"></script>
-<script src="/javascript/transit_screen.js"></script>
-<script src="/javascripts/socket.js"></script>
-<script src="/socket.io/socket.io.js"></script>
->>>>>>> Stashed changes
