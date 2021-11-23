@@ -22,12 +22,6 @@
         <section>
         <!-- 投稿一覧 -->
             <div class="line-bc">
-              <!--sample文章（完成時には削除）-->
-                <div class="balloon1 float-left">
-                    <div>完飲したラーメン丼。書かれてて嫌なことは？</div>
-                    <br />
-                    <input type="button" value="回答を見る" class="btn btn-secondary" onclick="openAnswer();">
-                </div>
                 {{#each themes}}
                 <div class="balloon1 float-left">
                     <div>{{this.content}}</div>
@@ -61,7 +55,6 @@
     </div>
     <!-- 回答　-->
     <div class="answer py-1" id="answer-area">
-      <form method="post" action="/" id="answerForm" target="saveData">
         <!-- section -->
         <section>
 
@@ -70,10 +63,7 @@
             <div>
               <!--sample文章（完成時には削除）-->
               <div class="clearfix">
-                {{!-- <br /> --}}
                 <div class="balloon2 float-left">
-                  {{!-- 　完飲したラーメン丼。書かれてて嫌なことは？ --}}
-                  {{!-- <br /> --}}
                   {{#each themes}}
                   <div id="re-theme">{{this.content}}お題</div>
                   <div>{{this.created_at}}</div>
@@ -83,16 +73,18 @@
                 <div style="margin-left: auto;">{{this.name}}さんより</div>
                 {{/each}}
               </div>
-              {{!-- <div style="margin-left: auto;">{{userName}}さんより</div> --}}
               <div class="clearfix">
                 <br />
-                <div class="balloon3 float-right">
                   {{!-- データベースから過去のコメントを表示 --}}
                   <div id="old-thread">
                     <div>
                       {{#each answers}}
-                      <div id="answer">{{this.content}}回答</div>
-                      <div>{{this.created_at}}</div>
+                      <div class="balloon3 float-right">
+                        <div id="answer">{{this.content}}</div>
+                        <div>{{this.name}}さんより</div>
+                        {{!-- コメントボタン --}}
+                        <input type="button" value="コメント" class="btn btn-light js-modal-open"　onclick="comment();">
+					            </div>
                       {{/each}}
                     </div>
                   </div>
@@ -100,8 +92,6 @@
                   <div id="thread">
                   </div>
                   <br />
-                  {{!-- コメントボタン --}}
-                  <input type="button" value="コメント" class="btn btn-light js-modal-open" onclick="comment();">
                   <div class="modal js-modal">
                     {{!-- <div class="modal__bg js-modal-close"></div> --}}
                     <div class="modal__content">
@@ -128,33 +118,24 @@
                   </div>
                   <!--modal-->
                 </div>
-                {{#each answers}}
-                <div style="margin-left: auto;" id="answer_name">{{this.name}}さんより</div>
-                {{/each}}
-                {{!-- <div style="margin-left: auto;">{{userName}}さんより</div> --}}
-              </div>
-              <!--ココに投稿したお題が収納-->
+              <!--ココに投稿した回答が収納-->
               <div class="clearfix answer-threads">
               </div>
-              {{!-- <div class="answer-thread">
-                <br />
-                <div id="thread"></div>
-              </div> --}}
             </div>
           </div>
         </section>
         <!-- section -->
         <!-- 入力エリア -->
-        <div class="form-row answer-column">
-          <div class="answer-message col-9">
-            <input id="message" name="answerText" class="form-control input-sm" placeholder="回答を投稿する">
-          </div>
-          <div class="room-submit col-3">
-            <input type="button" name="answerPublish" value="投稿" id="answer" class="btn btn-warning room-publish_button btn-publish"
-              onclick="publish(this.id);">
-          </div>
-        </div>
-      </form>
+        <form method="post" action="/room" id="answerForm" target="saveData">
+			<div class="form-row answer-column">
+				<div class="answer-message col-9">
+					<input id="message" name="answerText" class="form-control input-sm" placeholder="回答を投稿する">
+				</div>
+				<div class="room-submit col-3">
+					<input type="button" name="answerPublish" value="投稿" id="answer" class="btn btn-warning room-publish_button btn-publish" onclick="publish(this.id);">
+				</div>
+			</div>
+        </form>
     </div>
   </div>
   <!-- /.ogiri-area -->
