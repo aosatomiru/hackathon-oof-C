@@ -27,6 +27,7 @@ router.post('/room', function(request, response, next) {
                 console.log("保存完了！");
             });
         }
+        // room.hbsをデータとともに表示させる
     }else if(request.body.comment2chatText){ // 引用コメント投稿ボタンが押されたときの処理
         // 入力されたメッセージを取得
         const message = request.body.comment2chatText;
