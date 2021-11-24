@@ -74,8 +74,9 @@
                     {{#each answers}}
                     <div class={{ this.theme_id }}>
                       <div class="balloon3 float-right">
-                        <div>{{this.content}}</div>
-                        <div>{{this.name}}さんより</div>
+                        {{!-- コメント機能のためのidです --}}
+                        <div id="answer_content">{{this.content}}</div>
+                        <div id="answer_name">{{this.name}}さんより</div>
                         {{!-- コメントボタン --}}
                         <input type="button" value="コメント" class="btn btn-light js-modal-open" onclick="comment();">
                       </div>
@@ -96,8 +97,8 @@
                             onclick="publish(this.id);">
                         </div>
                         <div class="room-submit col-2">
-                          <input type="button" value="メモ" id="comment2chatPublish" class="btn btn-light room-memo_button"
-                            onclick="memo(this.id);">
+                          <input type="button" value="メモ" name="comment2chat" id="comment2chatPublish" class="btn btn-light room-memo_button"
+                            onclick="memo(this.name);">
                         </div>
                         <div class="room-submit col-2">
                           <button id="close" class="btn btn-light">閉じる</button>

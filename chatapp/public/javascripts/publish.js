@@ -8,20 +8,20 @@ function publish(field) {
     // 投稿日時を取得する
     let nowDate = getNow();
     // 入力されたメッセージを取得
+    console.log(field);
     let message = $('.' + field + '-message #message').val();
+    console.log(message);
 
     if (message.trim()){
         const date = nowDate;
         if (field === "comment2chat"){
-            let answer = document.getElementById("answer");
+            let answer = document.getElementById("answer_content");
             let answer_name = document.getElementById("answer_name");
-            let theme = document.getElementByName("re-theme");
-            console.log(message);
+            let theme = document.getElementById("re-theme");
             message += date + '<br>' + theme.innerHTML + '<br>' + answer.innerHTML + '<br>' + answer_name.innerHTML;
-            console.log(message);
-            // 投稿内容を送信
+            //投稿内容を送信
             socket.emit('sendMessageEvent', message, field);
-        }else if (field === "theme"){
+        }else if (field === "theme" || field === "answer"){
             socket.emit('sendMessageEvent', message, field);
         }else{
             socket.emit('sendMessageEvent', message + date, field);
@@ -55,7 +55,6 @@ socket.on('receiveMessageEvent', function (data, field) {
         $('.theme-thread').last().prepend('<p>' + data.replace('\n', '<br>') + '</p>');
     }
     else if (field == 'answer'){
-        console.log(field);
         $('.answer-threads').append('<div class="balloon3 float-right answer-thread"></div>');
         $('.answer-thread').last().append('<input type="button" value="コメント" class="btn btn-light js-modal-open" onclick="comment();">');
         $('.answer-threads').append('<div style="margin-left: auto;">' + userName + 'さんより</div>');
