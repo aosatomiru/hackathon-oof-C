@@ -226,6 +226,17 @@ section {
   bottom: 0;
 }
 
+/* モーダル*/
+.modal__content{
+  background: rgb(230, 201, 36);
+  left: 50%;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 60%;
+}
+
 /* twitter風チャット欄 */
 .twitter__container {
   height: 100%;
