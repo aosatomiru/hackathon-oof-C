@@ -87,29 +87,36 @@
                 <br />
                 <div class="modal js-modal">
                   {{!-- <div class="modal__bg js-modal-close"></div> --}}
-                  <div class="modal__content">
-                    <form method="post" action="/room" id="comment2chatForm" target="saveData">
-                      <div class="form-row answer-column">
-                        <div class="comment2chat-message col-8">
-                          <input type="hidden" value="" name="answer_name" id="comment_answer_name"></input>
-                          <input type="hidden" value="" name="answer_content" id="comment_answer_content"></input>
-                          <input type="hidden" value="" name="answer_theme" id="comment_answer_theme"></input>
-                          <input id="message" name="comment2chatText" class="form-control input-sm" placeholder="コメントを投稿する">
+                  <div class="modal__content modal-dialog-centered">
+                      <form method="post" action="/" id="comment2chatForm" target="saveData">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                            　<span aria-hidden="true">&times;</span> 
+                            </button> 
+                            <h4 class="modal-title" id="modal-label">ダイアログ</h4> 
+                          </div>
+                          <div class="modal-body">
+                            <div id={{this.id}}-content>{{this.content}}</div>
+                            <div id="answer_content">{{this.content}}</div>
+                          </div>
+                          <div class="modal-footer">
+                            <div class="form-row answer-column">
+                              <div class="comment2chat-message col-8">
+                                <input id="message" name="comment2chatText" class="form-control input-sm" placeholder="回答を投稿する">
+                              </div>
+                              <div class="room-submit col-2">
+                                <input type="button" value="投稿" name="comment2chat" id="comment2chat" class="btn btn-light room-publish_button btn-publish"
+                                  onclick="publish(this.id);">
+                              </div>
+                              <div class="room-submit col-2">
+                                <button id="close" class="btn btn-light">閉じる</button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div class="room-submit col-2">
-                          <input type="button" value="投稿" name="comment2chat" id="comment2chat" class="btn btn-light room-publish_button btn-publish"
-                            onclick="publish(this.id);">
-                        </div>
-                        <div class="room-submit col-2">
-                          <input type="button" value="メモ" name="comment2chat" id="comment2chatPublish" class="btn btn-light room-memo_button"
-                            onclick="memo(this.name);">
-                        </div>
-                        <div class="room-submit col-2">
-                          <button id="close" class="btn btn-light">閉じる</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
+                      </form>
+                    </div>
                   <!--modal__inner-->
                 </div>
                 <!--modal-->
