@@ -123,8 +123,8 @@ router.post('/room', function(request, response, next) {
                 databaseData.comments = comments;
             });
 
-            // データベースから過去の回答を取得
-            db.all("select * from answers order by created_at", (error, answers) => {
+            // データベースから過去の回答を取得 降順完了！
+            db.all("select * from answers order by created_at desc", (error, answers) => {
                 if(error) {
                     console.error('Error!', error);
                     return;
