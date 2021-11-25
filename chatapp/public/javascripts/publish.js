@@ -15,10 +15,10 @@ function publish(field) {
     if (message.trim()){
         const date = nowDate;
         if (field === "comment2chat"){
-            let answer = document.getElementById("answer_content");
-            let answer_name = document.getElementById("answer_name");
-            let theme = document.getElementById("re-theme");
-            message += date + '<br>' + theme.innerHTML + '<br>' + answer.innerHTML + '<br>' + answer_name.innerHTML;
+            let answer = document.getElementById("comment_answer_content").value;
+            let answer_name = document.getElementById("comment_answer_name").value;
+            let theme = document.getElementById("comment_answer_theme").value;
+            message += date + '<br>' + theme + '<br>' + answer_name + 'さんより' + '<br>' + answer;
             //投稿内容を送信
             socket.emit('sendMessageEvent', message, field);
         }else if (field === "theme" || field === "answer"){
@@ -47,20 +47,21 @@ socket.on('receiveMessageEvent', function (data, field) {
         // ID用に一意な文字列を取得
         const uniqueID = $('#uniqueID').val();
         // 吹き出しを表示する
+		// 変更した場所
         console.log(field);
         $('.theme-threads').append('<div class="balloon1 float-left theme-thread" name="re-theme"></div>');
-        $('.theme-thread').last().append('<input type="hidden" value="' + uniqueID +'" id="uniqueShowID"></input>');
-        $('.theme-thread').last().append('<input type="submit" value="回答を見る" class="btn btn-secondary" onclick="openAnswer();"></input>');
+        $('.theme-thread').last().append('<input type="submit" id=' + uniqueID + ' value="回答を見る" class="btn btn-secondary" onclick="openAnswer(this.id);"></input>');
         $('.theme-threads').append('<div style="margin-left: auto;">' + userName + 'さんより</div>');
         $('.theme-threads').append('<br>');
-        $('.theme-thread').last().prepend('<p>' + data.replace('\n', '<br>') + '</p>');
+        $('.theme-thread').last().prepend('<div id=' + uniqueID + '-content>' + data.replace('\n', '<br>') + '</div>');
     }
     else if (field == 'answer'){
-        $('.answer-threads').append('<div class="balloon3 float-right answer-thread"></div>');
-        $('.answer-thread').last().append('<input type="button" value="コメント" class="btn btn-light js-modal-open" onclick="comment();">');
-        $('.answer-threads').append('<div style="margin-left: auto;">' + userName + 'さんより</div>');
-        $('.answer-threads').append('<br>');
-        $('.answer-thread').last().prepend('<p>' + data.replace('\n', '<br>') + '</p>');
+        const answer_key = $('#foreignKey').val();
+        $('.answer-threads').append('<div class="' + answer_key +'"></div>');
+        $('.answer-threads').last().append('<div class="answer_box balloon3 float-right answer-thread"></div>');
+        $('.answer-thread').last().last().append('<input type="button" value="コメント" class="answer_button btn btn-light js-modal-open" onclick="comment();"></input>');
+        $('.answer-threads').last().last().append('<div class="answer_name" style="margin-left: auto;">' + userName + 'さんより</div>');
+        $('.answer-thread').last().last().prepend('<div class="answer_content">' + data.replace('\n', '<br>') + '</div>');
     }
     $('.' + field + '-message #message').val() = "";
 });
@@ -77,9 +78,13 @@ function getNow(){
     return  Year + "-" + Month + "-" + Day + " " + Hour + ":" + Min + ":" + Sec;
 }
 
-function comment(){
-    // console.log(msg);
+function comment(commentID){
     $('.js-modal').fadeIn();
+    console.log($('#answer_box' + commentID).children('.answer_name').text().slice(0, -4));
+    $('#comment_answer_name').val($('#answer_box' + commentID).children('.answer_name').text().slice(0, -4));
+    $('#comment_answer_content').val($('#answer_box' + commentID).children('.answer_content').text());
+    console.log($('#re-theme').text());
+    $('#comment_answer_theme').val($('#re-theme').text());
     return false;
 }
 

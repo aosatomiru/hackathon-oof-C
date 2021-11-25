@@ -52,7 +52,7 @@
             </div>
         </form>
     </div>
-    <!-- 回答　-->
+    <!-- 回答 -->
     <div class="answer py-1" id="answer-area">
       <!-- section -->
       <section>
@@ -70,18 +70,19 @@
             <div class="clearfix">
               <br />
                 {{!-- データベースから過去のコメントを表示 --}}
-                <div id="old-thread">
+                <div id="answer-thread">
                     {{#each answers}}
-                    <div class={{ this.theme_id }}>
-                      <div class="balloon3 float-right">
+                    {{!-- お題に合った回答を表示するためのclass（display.js） --}}
+                    <div class={{this.theme_id}}>
+                      <div class="answer_box balloon3 float-right">
                         {{!-- コメント機能のためのidです --}}
-                        <div id="answer_content">{{this.content}}</div>
-                        <div id="answer_name">{{this.name}}さんより</div>
+                        <div class="answer_content">{{this.content}}</div>
+                        <div class="answer_name">{{this.name}}さんより</div>
                         {{!-- コメントボタン --}}
-                        <input type="button" value="コメント" class="btn btn-light js-modal-open" onclick="comment();">
+                        <input type="button" value="コメント" id="" class="answer_button btn btn-light js-modal-open" onclick="giveNumber(); comment(this.id);">
                       </div>
+                    </div>
                     {{/each}}
-                  </div>
                 </div>
                 <br />
                 <div class="modal js-modal">
@@ -90,7 +91,10 @@
                     <form method="post" action="/room" id="comment2chatForm" target="saveData">
                       <div class="form-row answer-column">
                         <div class="comment2chat-message col-8">
-                          <input id="message" name="comment2chatText" class="form-control input-sm" placeholder="回答を投稿する">
+                          <input type="hidden" value="" name="answer_name" id="comment_answer_name"></input>
+                          <input type="hidden" value="" name="answer_content" id="comment_answer_content"></input>
+                          <input type="hidden" value="" name="answer_theme" id="comment_answer_theme"></input>
+                          <input id="message" name="comment2chatText" class="form-control input-sm" placeholder="コメントを投稿する">
                         </div>
                         <div class="room-submit col-2">
                           <input type="button" value="投稿" name="comment2chat" id="comment2chat" class="btn btn-light room-publish_button btn-publish"
@@ -111,7 +115,7 @@
                 <!--modal-->
             </div>
             <!--ココに投稿した回答が収納-->
-            <div class="clearfix answer-threads">
+            <div class="clearfix answer-threads" id="answer-new-thread">
             </div>
         </div>
       </section>
@@ -121,6 +125,7 @@
       <form method="post" action="/room" id="answerForm" target="saveData">
         <div class="form-row answer-column">
           <div class="answer-message col-9">
+            <input type="hidden" value="" name="foreignKey" id="foreignKey"></input>
             <input id="message" name="answerText" class="form-control input-sm" placeholder="回答を投稿する">
           </div>
           <div class="room-submit col-3">
@@ -132,7 +137,7 @@
   </div>
   <!-- /.ogiri-area -->
 
-  <!-- チャットルーム　-->
+  <!-- チャットルーム -->
   <div class="mt-5 col-lg-5 col-12">
     <!-- twitter風 -->
     <!-- ▼twitter風ここから -->
@@ -153,10 +158,10 @@
             </div>
             {{!-- <div class="date">10分前</div> --}}
             <div class="chat-thread">
-              {{!-- データベースから過去のコメントを表示 --}}
               <div id="thread">
               </div>
               <br />
+              {{!-- データベースから過去のコメントを表示 --}}
               <div id="old-thread">
                 {{#each comments}}
                 <div>

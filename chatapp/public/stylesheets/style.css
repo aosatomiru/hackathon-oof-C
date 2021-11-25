@@ -32,10 +32,10 @@ body {
 }
 
 .pic_placement  {
-  background-image:url(./logo.png); 
+  background-image:url(./logo.png);
   background-size:contain;
   background-repeat: no-repeat;
-  width:100%; 
+  width:100%;
   height:200px;
   border: 0px none;
 }
@@ -98,7 +98,7 @@ section {
   transition: all 0.5s;
 }
 
-.answer form, .answer .answer-column{
+.answer form, .answer section{
   display: none;
 }
 
@@ -107,7 +107,7 @@ section {
   width: 50%;
 }
 
-.answer.open-answer form, .answer.open-answer .answer-column{
+.answer.open-answer form, .answer.open-answer section{
   display: flex;
 }
 

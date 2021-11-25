@@ -13,6 +13,8 @@ router.get('/', function(request, response, next) {
 router.post('/room', function(request, response, next) {
     // データベースに接続
     const db = new sqlite3.Database("./ogiri.db");
+    // 外部キー制約有効にする
+    db.run("PRAGMA foreign_keys");
     // ユーザーネームを取得
     let getUserName = request.body.userName;
 
@@ -31,11 +33,14 @@ router.post('/room', function(request, response, next) {
     }else if(request.body.comment2chatText){ // 引用コメント投稿ボタンが押されたときの処理
         // 入力されたメッセージを取得
         const message = request.body.comment2chatText;
+        const answerName = request.body.answer_name;
+        const answerTheme = request.body.answer_theme;
+        const answerContent = request.body.answer_content;
         // 入力されたメッセージが空やスペースのみでないとき
         if (message.trim()){
             db.serialize(() => {
                 // データベースに名前。投稿内容、日時を登録
-                db.run("insert into comments(name, content) values(?,?)", getUserName, message);
+                db.run("insert into comments(name, content, answer_name, answer_theme, answer_content) values(?,?,?,?,?)", getUserName, message, answerName, answerTheme, answerContent);
                 console.log("保存完了！");
             });
         }
@@ -55,6 +60,7 @@ router.post('/room', function(request, response, next) {
         }
 
     }else if(request.body.answerText){ // 回答投稿ボタンが押されたときの処理
+        // const foreignKey = request.body.
         const message = request.body.answerText;
         // 入力されたメッセージが空やスペースのみでないとき
         if (message.trim()){

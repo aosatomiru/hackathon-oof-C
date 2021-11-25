@@ -14,6 +14,12 @@ function memo(field) {
     if (message.trim()){
         const date = nowDate;
         // メモの内容を表示
+        if (field === "comment2chat"){
+            let answer = document.getElementById("comment_answer_content").value;
+            let answer_name = document.getElementById("comment_answer_name").value;
+            let theme = document.getElementById("comment_answer_theme").value;
+            message += date + '<br>' + theme + '<br>' + answer_name + 'さんより' + '<br>' + answer;
+        }
         $('.chat-thread #thread').prepend('<p>' + userName + 'さんのメモ：' + message + date + '</p>');
         $('.js-modal').fadeOut();
         $('.' + field + '-message #message').val() = "";
