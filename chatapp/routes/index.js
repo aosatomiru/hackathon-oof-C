@@ -62,11 +62,12 @@ router.post('/room', function(request, response, next) {
     }else if(request.body.answerText){ // 回答投稿ボタンが押されたときの処理
         // const foreignKey = request.body.
         const message = request.body.answerText;
+        const uniqueID2 = request.body.uniqueID2;
         // 入力されたメッセージが空やスペースのみでないとき
         if (message.trim()){
             db.serialize(() => {
                 // データベースに名前。投稿内容、日時を登録
-                db.run("insert into answers(name, content) values(?,?)",getUserName, message);
+                db.run("insert into answers(theme_id, name, content) values(?,?,?)",uniqueID2,getUserName, message);
                 console.log("保存完了！");
             });
         }
