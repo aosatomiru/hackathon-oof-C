@@ -40,7 +40,7 @@ router.post('/room', function(request, response, next) {
         if (message.trim()){
             db.serialize(() => {
                 // データベースに名前。投稿内容、日時を登録
-                db.run("insert into comments(name, content, answer_name, answer_theme, answer_content) values(?,?,?,?,?)", getUserName, message, answerName, answerTheme, answerContent);
+                db.run("insert into comments(name, content, answer_name, answer_theme, answer_content) values(?,?,?,?,?)",getUserName, message, answerName, answerTheme, answerContent);
                 console.log("保存完了！");
             });
         }

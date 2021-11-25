@@ -7,11 +7,11 @@ function exit() {
     // 退室メッセージイベントを送信する
     socket.emit('exitEvent',userName+'さんが退室しました。');
     // 退室
-    location.href = '/';
+    window.location.href = '/';
 
 }
 
 // サーバから受信した退室メッセージを画面上に表示する
 socket.on('exitEvent', function (data) {
-    $('#thread').prepend('<p>' + data + '</p>');
+    $('.chat-thread #thread').prepend('<p>' + data + '</p>');
 });

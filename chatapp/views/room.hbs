@@ -88,13 +88,13 @@
                 <div class="modal js-modal">
                   {{!-- <div class="modal__bg js-modal-close"></div> --}}
                   <div class="modal__content modal-dialog-centered">
-                      <form method="post" action="/" id="comment2chatForm" target="saveData">
+                      <form method="post" action="/room" id="comment2chatForm" target="saveData">
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">
-                            　<span aria-hidden="true">&times;</span> 
-                            </button> 
-                            <h4 class="modal-title" id="modal-label">ダイアログ</h4> 
+                            　<span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="modal-label">ダイアログ</h4>
                           </div>
                           <div class="modal-body">
                             <div id={{this.id}}-content>{{this.content}}</div>
@@ -103,7 +103,11 @@
                           <div class="modal-footer">
                             <div class="form-row answer-column">
                               <div class="comment2chat-message col-8">
-                                <input id="message" name="comment2chatText" class="form-control input-sm" placeholder="回答を投稿する">
+                                <input type="hidden" name="userName" value={{userName}}>
+                                <input type="hidden" value="" name="answer_name" id="comment_answer_name"></input>
+                                <input type="hidden" value="" name="answer_content" id="comment_answer_content"></input>
+                                <input type="hidden" value="" name="answer_theme" id="comment_answer_theme"></input>
+                                <input id="message" name="comment2chatText" class="form-control input-sm" placeholder="コメントを投稿する">
                               </div>
                               <div class="room-submit col-2">
                                 <input type="button" value="投稿" name="comment2chat" id="comment2chat" class="btn btn-light room-publish_button btn-publish"
@@ -211,6 +215,7 @@
 
   <script src="/javascripts/publish.js"></script>
   <script src="/javascripts/enter.js"></script>
+  <script src="/javascripts/exit.js"></script>
   <script src="/javascripts/memo.js"></script>
   <script src="/javascripts/display.js"></script>
   <script src="/javascript/transit_screen.js"></script>
