@@ -154,6 +154,9 @@
             {{!-- <div class="date">10分前</div> --}}
             <div class="chat-thread">
               {{!-- データベースから過去のコメントを表示 --}}
+              <div id="thread">
+              </div>
+              <br />
               <div id="old-thread">
                 {{#each comments}}
                 <div>
@@ -167,9 +170,6 @@
                 </div>
               </div>
               <!-- /#old-thread -->
-              <br/>
-              <div id="thread">
-              </div>
             </div>
           </div>
         </div>

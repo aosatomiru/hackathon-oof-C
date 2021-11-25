@@ -15,6 +15,8 @@ function memo(field) {
         const date = nowDate;
         // メモの内容を表示
         $('.chat-thread #thread').prepend('<p>' + userName + 'さんのメモ：' + message + date + '</p>');
+        $('.js-modal').fadeOut();
+        $('.' + field + '-message #message').val() = "";
     }
 
     return false;

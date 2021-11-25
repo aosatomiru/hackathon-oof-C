@@ -40,6 +40,7 @@ socket.on('receiveMessageEvent', function (data, field) {
     const userName = $('#userName').val();
     if (field == 'comment2chat'){
         $('.chat-thread #thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
+        $('.js-modal').fadeOut();
     }else if (field == 'chat'){
         $('.chat-thread #thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
     }else if (field == 'theme'){
@@ -61,7 +62,7 @@ socket.on('receiveMessageEvent', function (data, field) {
         $('.answer-threads').append('<br>');
         $('.answer-thread').last().prepend('<p>' + data.replace('\n', '<br>') + '</p>');
     }
-
+    $('.' + field + '-message #message').val() = "";
 });
 
 function getNow(){
