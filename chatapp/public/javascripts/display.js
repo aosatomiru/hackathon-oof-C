@@ -29,9 +29,6 @@ function openAnswer(idNumber){
 
 	// 回答フォームのhiddenにvalue入れる foreignKey保存するため
 	document.getElementById("foreignKey").value = idNumber;
-
-
-
 }
 // アイコンを押すと、#theme-area,#answer-areaから.open-answerを削除
 function closeAnswer(){
@@ -45,6 +42,6 @@ function closeAnswer(){
 function giveNumber(){
 	$('.answer_box').each(function(j){
 		$(this).attr('id','answer_box'+ (j+1));
-		$(this).children('.answer_button').attr('id',(j+1))
+		$(this).children('.text-center').children('.answer_button').attr('id',(j+1))
 	});
 }

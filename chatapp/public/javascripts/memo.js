@@ -13,14 +13,7 @@ function memo(field) {
 
     if (message.trim()){
         const date = nowDate;
-        // メモの内容を表示
-        if (field === "comment2chat"){
-            let answer = document.getElementById("comment_answer_content").value;
-            let answer_name = document.getElementById("comment_answer_name").value;
-            let theme = document.getElementById("comment_answer_theme").value;
-            message += date + '<br>' + theme + '<br>' + answer_name + 'さんより' + '<br>' + answer;
-        }
-        $('.chat-thread #thread').prepend('<p>' + userName + 'さんのメモ：' + message + date + '</p>');
+        $('.chat-thread #thread').prepend('<div class="border-top"><br>' + userName + 'さんのメモ：' + message + '<br>'+ date + '</div><br>');
         $('.js-modal').fadeOut();
         $('.' + field + '-message #message').val() = "";
     }
@@ -37,5 +30,5 @@ function getNow(){
     let Hour = now.getHours();
     let Min = now.getMinutes();
     let Sec = now.getSeconds();
-    return "　(" + Year + "/" + Month + "/" + Day + "/" + Hour + ":" + Min + ":" + Sec + ")";
+    return "(" + Year + "/" + Month + "/" + Day + "/" + Hour + ":" + Min + ":" + Sec + ")";
 }

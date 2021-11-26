@@ -3,6 +3,8 @@ const socket = io.connect();
 const count = 0;
 // 投稿メッセージをサーバに送信する
 function publish(field) {
+    // ユーザ名を取得
+    const userName = $('#userName').val();
     // 隠しinputタグのvalueに一意な文字列を設定
     document.getElementById( "uniqueID" ).value = getUniqueStr();
     // 投稿日時を取得する
@@ -18,13 +20,17 @@ function publish(field) {
             let answer = document.getElementById("comment_answer_content").value;
             let answer_name = document.getElementById("comment_answer_name").value;
             let theme = document.getElementById("comment_answer_theme").value;
-            message += date + '<br>' + theme + '<br>' + answer_name + 'さんより' + '<br>' + answer;
+            message +='<br>'+ date + '</div><br><div>' + theme + '</div><div>' + answer_name + 'さんより' + '</div><div>' + answer;
             //投稿内容を送信
-            socket.emit('sendMessageEvent', message, field);
-        }else if (field === "theme" || field === "answer"){
-            socket.emit('sendMessageEvent', message, field);
+            socket.emit('sendMessageEvent', message, field,userName);
+        }else if (field === "theme"){
+            const uniqueID = $('#uniqueID').val();
+            socket.emit('sendMessageEvent', message, field, userName,uniqueID);
+        }else if (field === "answer"){
+            const answer_key = $('#foreignKey').val();
+            socket.emit('sendMessageEvent', message, field, userName, answer_key);
         }else{
-            socket.emit('sendMessageEvent', message + date, field);
+            socket.emit('sendMessageEvent', message + '<br>'+ date, field, userName);
         }
     }
     // データベースに保存
@@ -35,35 +41,33 @@ function publish(field) {
 }
 
 // サーバから受信した投稿メッセージを画面上に表示する
-socket.on('receiveMessageEvent', function (data, field) {
-    // ユーザ名を取得
-    const userName = $('#userName').val();
+socket.on('receiveMessageEvent', function (data, field, userName, uniqueID) {
     if (field == 'comment2chat'){
-        $('.chat-thread #thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
+        $('.chat-thread #thread').prepend('<div class="border-top"><br>' + userName + 'さん：' + data.replace('\n', '<br>') + '</div><br>');
         $('.js-modal').fadeOut();
     }else if (field == 'chat'){
-        $('.chat-thread #thread').prepend('<p>' + userName + 'さん：' + data.replace('\n', '<br>') + '</p>');
+        $('.chat-thread #thread').prepend('<div class="border-top"><br>' + userName + 'さん：' + data.replace('\n', '<br>') + '</div><br>');
     }else if (field == 'theme'){
-        // ID用に一意な文字列を取得
-        const uniqueID = $('#uniqueID').val();
         // 吹き出しを表示する
-		// 変更した場所
         console.log(field);
-        $('.theme-threads').append('<div class="balloon1 float-left theme-thread" name="re-theme"></div>');
-        $('.theme-thread').last().append('<input type="submit" id=' + uniqueID + ' value="回答を見る" class="btn btn-secondary" onclick="openAnswer(this.id);"></input>');
-        $('.theme-threads').append('<div style="margin-left: auto;">' + userName + 'さんより</div>');
-        $('.theme-threads').append('<br>');
-        $('.theme-thread').last().prepend('<div id=' + uniqueID + '-content>' + data.replace('\n', '<br>') + '</div>');
+        $('.theme-threads').append('<div class="my-1 balloon1 float-left theme-thread" name="re-theme"></div>');
+        $('.theme-thread').last().append('<div class="text-center"><input type="submit" id=' + uniqueID + ' value="回答を見る" class="btn btn-secondary" onclick="openAnswer(this.id);"></input></div>');
+        $('.theme-thread').last().prepend('<div class="small text-secondary" style="margin-left: auto;">' + userName + 'さんより</div><div id=' + uniqueID + '-content>' + data.replace('\n', '<br>') + '</div>');
+
+    }else if (field == 'answer'){
+        $('.answer-threads').append('<div class="' + uniqueID +'"></div>');
+        $('.answer-threads div:last').append('<div class="answer_box balloon3 my-1 float-right answer-thread"></div>');
+        $('.' + uniqueID + ':last div:last').append('<div class="text-center"><input type="button" value="コメント" class="answer_button btn btn-light js-modal-open" onclick="giveNumber(); comment(this.id);"></input></div>');
+        $('.' + uniqueID +':last div:first()').prepend('<div class="small text-secondary answer_name" style="margin-left: auto;">' + userName + 'さんより</div><div class="answer_content">' + data.replace('\n', '<br>') + '</div>');
+
+        console.log($('#foreignKey').val());
+        console.log(uniqueID);
+        if(uniqueID !== $('#foreignKey').val()){
+            $('.' + uniqueID).css('display', 'none');
+        }
     }
-    else if (field == 'answer'){
-        const answer_key = $('#foreignKey').val();
-        $('.answer-threads').append('<div class="' + answer_key +'"></div>');
-        $('.answer-threads').last().append('<div class="answer_box balloon3 float-right answer-thread"></div>');
-        $('.answer-thread').last().last().append('<input type="button" value="コメント" class="answer_button btn btn-light js-modal-open" onclick="comment();"></input>');
-        $('.answer-threads').last().last().append('<div class="answer_name" style="margin-left: auto;">' + userName + 'さんより</div>');
-        $('.answer-thread').last().last().prepend('<div class="answer_content">' + data.replace('\n', '<br>') + '</div>');
-    }
-    $('.' + field + '-message #message').val() = "";
+
+    $('.' + field + '-message #message').val("");
 });
 
 function getNow(){

@@ -7,6 +7,9 @@ body {
   padding-bottom: 20px;
   background:  linear-gradient(#fff67f, #fc6907);
 }
+img{
+  outline: none;
+}
 /* index画面 */
 .form-signin{
   width: 100%;
@@ -149,8 +152,8 @@ section {
 .line-cd {
   padding: 20px 10px;
   max-width: 868px;
-  margin: 0px auto;
   font-size: 14px;
+  width: 300px;
   height: 480px;
   overflow-y: scroll;
 }
@@ -162,7 +165,7 @@ section {
   border-radius: 10px;
   background-color: rgb(230, 201, 36);
   color: rgb(51, 51, 51);
-  max-width: 250px;
+  width: 180px;
   font-size: 15px;
   font-weight: bolder;
   word-wrap: break-word;
@@ -239,7 +242,7 @@ section {
 
 /* twitter風チャット欄 */
 .twitter__container {
-  height: 100%;
+  height: 550px;
   padding: 0;
   background: #ffffff;
   overflow: hidden;
@@ -292,11 +295,12 @@ section {
 
 .twitter__container .twitter__block {
   width: 100%;
+  height: 100%;
   display: block;
   padding: 10px;
   margin-bottom: 5px;
   border-bottom: solid 1px #eeeeee;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .twitter__container .twitter__block:last-child {

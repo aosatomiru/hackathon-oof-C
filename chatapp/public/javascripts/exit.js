@@ -13,5 +13,5 @@ function exit() {
 
 // サーバから受信した退室メッセージを画面上に表示する
 socket.on('exitEvent', function (data) {
-    $('.chat-thread #thread').prepend('<p>' + data + '</p>');
+    $('.chat-thread #thread').prepend('<div  class="border-top"><br>' + data + '</div><br>');
 });

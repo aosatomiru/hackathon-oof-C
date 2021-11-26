@@ -62,7 +62,7 @@ router.post('/room', function(request, response, next) {
     }else if(request.body.answerText){ // 回答投稿ボタンが押されたときの処理
         const foreignKey = request.body.foreignKey;
         const message = request.body.answerText;
-        
+
         // 入力されたメッセージが空やスペースのみでないとき
         if (message.trim()){
             db.serialize(() => {
@@ -114,7 +114,7 @@ router.post('/room', function(request, response, next) {
             });
 
             // データベースから過去のコメントを取得
-            db.all("select * from comments order by created_at", (error, comments) => {
+            db.all("select * from comments order by created_at desc", (error, comments) => {
                 if(error) {
                     console.error('Error!', error);
                     return;
@@ -123,8 +123,7 @@ router.post('/room', function(request, response, next) {
                 databaseData.comments = comments;
             });
 
-            // データベースから過去の回答を取得 降順完了！
-            db.all("select * from answers order by created_at desc", (error, answers) => {
+            db.all("select * from answers order by created_at", (error, answers) => {
                 if(error) {
                     console.error('Error!', error);
                     return;
